@@ -1,1 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Games | SGgames</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #202842 0%, #0d1018 45%, #08090d 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 7%;
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #d6d9e0;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            background: #286ed8;
+            color: white;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 440px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 90px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .small-title {
+            color: #74b7ff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 90px);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #b8bec9;
+            font-size: 20px;
+            line-height: 1.7;
+            max-width: 720px;
+            margin: auto;
+        }
+
+        /* Main content */
+
+        .games-section {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: #aeb5c0;
+            font-size: 18px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
+        }
+
+        .game-card {
+            overflow: hidden;
+            background: rgba(24, 28, 40, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #4b99ff;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: #151925;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.04);
+        }
+
+        .status {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            padding: 8px 13px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-development {
+            background: #d48618;
+            color: white;
+        }
+
+        .status-released {
+            background: #269e61;
+            color: white;
+        }
+
+        .game-content {
+            padding: 28px;
+        }
+
+        .game-content h3 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .genre {
+            color: #69adff;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .description {
+            color: #bdc3ce;
+            line-height: 1.7;
+            margin-bottom: 22px;
+            min-height: 108px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            background: rgba(255, 255, 255, 0.055);
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: #d6dae2;
+            font-size: 14px;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: #67d48d;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 19px;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            background: #2879e4;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: #e3e6eb;
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        /* Upcoming project section */
+
+        .upcoming {
+            margin-top: 80px;
+            padding: 45px;
+            border-radius: 22px;
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(39, 105, 195, 0.22),
+                    rgba(93, 45, 142, 0.2)
+                );
+            border: 1px solid rgba(118, 172, 255, 0.26);
+        }
+
+        .upcoming h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .upcoming p {
+            max-width: 680px;
+            margin: auto;
+            color: #bec4cf;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+            text-align: center;
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9299a5;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Mobile layout */
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero {
+                padding: 65px 18px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .games-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .game-content {
+                padding: 22px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .upcoming {
+                padding: 30px 20px;
+            }
+
+            .button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="stuff.html" class="logo">SG<span>games</span></a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="characters.html">Characters</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="small-title">SGgames projects</p>
+
+            <h1>Our Games</h1>
+
+            <p>
+                Explore the worlds being created by SGgames, from large fantasy
+                adventures to smaller experimental games built around simple and
+                entertaining ideas.
+            </p>
+        </div>
+    </header>
+
+    <main class="games-section">
+
+        <div class="section-heading">
+            <h2>Current Projects</h2>
+            <p>Games currently being developed or available to play.</p>
+        </div>
+
+        <div class="games-grid">
+
+            <!-- Tyrant's World -->
+
+            <article class="game-card">
+
+                <div class="game-image">
+                    <img
+                        src="images/tyrants-world.png"
+                        alt="Tyrant's World fantasy game"
+                    >
+
+                    <span class="status status-development">
+                        In Development
+                    </span>
+                </div>
+
+                <div class="game-content">
+                    <h3>Tyrant's World</h3>
+
+                    <p class="genre">
+                        Open-world fantasy RPG
+                    </p>
+
+                    <p class="description">
+                        Enter a dangerous fantasy world filled with monsters,
+                        powerful bosses, different races, character classes,
+                        abilities, dungeons and ancient threats. Build your
+                        character and discover your place in the world.
+                    </p>
+
+                    <ul class="features">
+                        <li>Open fantasy world</li>
+                        <li>Multiplayer support</li>
+                        <li>Classes and races</li>
+                        <li>Boss battles</li>
+                        <li>Abilities and magic</li>
+                        <li>Character progression</li>
+                    </ul>
+
+                    <div class="buttons">
+                        <a
+                            class="button primary-button"
+                            href="https://store.steampowered.com/app/3715100/Tyrants_world/"
+                            target="_blank"
+                        >
+                            View on Steam
+                        </a>
+
+                        <a
+                            class="button secondary-button"
+                            href="characters.html"
+                        >
+                            View Characters
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Zombie Hunt -->
+
+            <article class="game-card">
+
+                <div class="game-image">
+                    <img
+                        src="images/zombie-hunt.png"
+                        alt="Zombie Hunt survival game"
+                    >
+
+                    <span class="status status-released">
+                        Available Now
+                    </span>
+                </div>
+
+                <div class="game-content">
+                    <h3>Zombie Hunt</h3>
+
+                    <p class="genre">
+                        Zombie survival game
+                    </p>
+
+                    <p class="description">
+                        Survive waves of zombies while working with limited
+                        supplies. Every mistake can bring you closer to becoming
+                        one of the undead. Fight through the night and see how
+                        long you can remain human.
+                    </p>
+
+                    <ul class="features">
+                        <li>20 survival waves</li>
+                        <li>Limited supplies</li>
+                        <li>Different zombie types</li>
+                        <li>Fast arcade gameplay</li>
+                        <li>Simple survival strategy</li>
+                        <li>Available on itch.io</li>
+                    </ul>
+
+                    <div class="buttons">
+                        <a
+                            class="button primary-button"
+                            href="https://supergutta.itch.io/zombie-hunt"
+                            target="_blank"
+                        >
+                            Play on itch.io
+                        </a>
+
+                        <a
+                            class="button secondary-button"
+                            href="index.html"
+                        >
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <section class="upcoming">
+            <h2>More Games Are Coming</h2>
+
+            <p>
+                SGgames will continue creating both ambitious projects and
+                smaller experimental games. New projects, screenshots and
+                development updates will be added here over time.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
