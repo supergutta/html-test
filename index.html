@@ -625,10 +625,219 @@
                 grid-template-columns: 1fr;
             }
         }
+    
+        /* Interactive additions */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -8px;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.2s ease;
+        }
+
+        .hero-content {
+            transition: transform 0.2s ease-out;
+        }
+
+        .site-header {
+            background-position: center;
+            transition: background-position 0.2s ease-out;
+        }
+
+        .track {
+            position: relative;
+        }
+
+        .track.is-playing {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 1px rgba(230, 184, 75, 0.2),
+                        0 10px 30px rgba(230, 184, 75, 0.12);
+        }
+
+        .track.is-playing::before {
+            content: "NOW PLAYING";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            color: var(--gold-light);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+        }
+
+        .gallery-item {
+            cursor: zoom-in;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(2, 5, 8, 0.92);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.open {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .lightbox img {
+            max-width: min(1200px, 94vw);
+            max-height: 88vh;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            color: white;
+            background: rgba(0,0,0,0.55);
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        .lightbox-caption {
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            color: #dce5ed;
+            text-align: center;
+            max-width: 90vw;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 150;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: #171105;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: var(--shadow);
+            font-size: 1.25rem;
+            font-weight: 900;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--green), var(--gold));
+        }
+
+        .game-card {
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.55);
+        }
+
+        .fact-list li {
+            transition:
+                transform 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .fact-list li:hover {
+            transform: translateX(8px);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
     </style>
 </head>
 
 <body>
+    <div class="progress-bar" id="progressBar"></div>
     <header class="site-header">
         <div class="hero-content">
             <span class="studio-label">
@@ -672,7 +881,7 @@
     </nav>
 
     <main>
-        <section id="music">
+        <section class="reveal" id="music">
             <div class="section-heading">
                 <p class="section-label">Game audio</p>
 
@@ -687,7 +896,7 @@
                 </p>
             </div>
 
-            <div class="musicbox card">
+            <div class="musicbox card reveal">
                 <div class="music-grid">
                     <article class="track">
                         <h3>🎵 Tyrant's World Theme</h3>
@@ -757,7 +966,7 @@
             </div>
         </section>
 
-        <section id="gallery">
+        <section class="reveal" id="gallery">
             <div class="section-heading">
                 <p class="section-label">Development gallery</p>
 
@@ -771,7 +980,7 @@
                 </p>
             </div>
 
-            <div class="gallery">
+            <div class="gallery reveal">
                 <a
                     class="gallery-item"
                     href="Uten navn-2.png"
@@ -802,7 +1011,7 @@
             </div>
         </section>
 
-        <section id="about">
+        <section class="reveal" id="about">
             <div class="section-heading">
                 <p class="section-label">The studio</p>
 
@@ -811,7 +1020,7 @@
                 </h2>
             </div>
 
-            <div class="about-grid">
+            <div class="about-grid reveal">
                 <article class="about-card card">
                     <h2>
                         Building something from the beginning
@@ -859,7 +1068,7 @@
             </div>
         </section>
 
-        <section id="tokyo">
+        <section class="reveal" id="tokyo">
             <div class="section-heading">
                 <p class="section-label">Future destination</p>
 
@@ -874,7 +1083,7 @@
                 </p>
             </div>
 
-            <div class="tokyo-grid">
+            <div class="tokyo-grid reveal">
                 <div class="map-card card">
                     <iframe
                         src="https://maps.google.com/maps?q=shinjuku&t=&z=13&ie=UTF8&iwloc=&output=embed"
@@ -926,6 +1135,15 @@
         </section>
     </main>
 
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+        <img id="lightboxImage" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
     <footer>
         <p>
             © 2026 <strong>SGgames</strong>.
@@ -952,6 +1170,149 @@
             }
         })(document, "script", "weatherwidget-io-js");
     </script>
+
+    <script>
+        // Scroll reveal
+        const revealItems = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+
+        // Active navigation link
+        const sections = document.querySelectorAll("main section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                navLinks.forEach((link) => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === `#${entry.target.id}`
+                    );
+                });
+            });
+        }, { rootMargin: "-35% 0px -55% 0px" });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+
+        // Make sure only one audio track plays at a time
+        const audioPlayers = document.querySelectorAll("audio");
+
+        audioPlayers.forEach((player) => {
+            player.addEventListener("play", () => {
+                audioPlayers.forEach((other) => {
+                    const track = other.closest(".track");
+
+                    if (other !== player) {
+                        other.pause();
+                    }
+
+                    track?.classList.toggle("is-playing", other === player);
+                });
+            });
+
+            player.addEventListener("pause", () => {
+                player.closest(".track")?.classList.remove("is-playing");
+            });
+
+            player.addEventListener("ended", () => {
+                player.closest(".track")?.classList.remove("is-playing");
+            });
+        });
+
+        // Gallery lightbox
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const lightboxCaption = document.getElementById("lightboxCaption");
+        const lightboxClose = document.getElementById("lightboxClose");
+
+        document.querySelectorAll(".gallery-item").forEach((item) => {
+            item.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                const image = item.querySelector("img");
+                lightboxImage.src = item.getAttribute("href");
+                lightboxImage.alt = image?.alt || "Gallery image";
+                lightboxCaption.textContent = image?.alt || "";
+                lightbox.classList.add("open");
+                lightbox.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+        }
+
+        lightboxClose.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeLightbox();
+        });
+
+        // Reading progress and back-to-top button
+        const progressBar = document.getElementById("progressBar");
+        const backToTop = document.getElementById("backToTop");
+
+        function updateScrollUI() {
+            const scrollTop = window.scrollY;
+            const pageHeight =
+                document.documentElement.scrollHeight - window.innerHeight;
+
+            const progress = pageHeight > 0
+                ? (scrollTop / pageHeight) * 100
+                : 0;
+
+            progressBar.style.width = `${progress}%`;
+            backToTop.classList.toggle("show", scrollTop > 600);
+        }
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        updateScrollUI();
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Subtle hero parallax on desktop
+        const hero = document.querySelector(".site-header");
+        const heroContent = document.querySelector(".hero-content");
+
+        hero.addEventListener("mousemove", (event) => {
+            if (window.matchMedia("(max-width: 850px)").matches) return;
+
+            const rect = hero.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+            heroContent.style.transform =
+                `translate(${x * 10}px, ${y * 8}px)`;
+
+            hero.style.backgroundPosition =
+                `${50 + x * 2}% ${50 + y * 2}%`;
+        });
+
+        hero.addEventListener("mouseleave", () => {
+            heroContent.style.transform = "";
+            hero.style.backgroundPosition = "center";
+        });
+    </script>
+
 </body>
 </html>
-```
