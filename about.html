@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Learn more about SGgames, an independent game studio creating Tyrant's World, Zombie Hunt and future gaming projects."
+    >
+
+    <title>About | SGgames</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background:
+                radial-gradient(
+                    circle at top,
+                    #202842 0%,
+                    #0d1018 45%,
+                    #08090d 100%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 430px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 90px 20px;
+            text-align: center;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .small-title {
+            margin-bottom: 18px;
+
+            color: #74b7ff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+            font-size: clamp(44px, 8vw, 84px);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+
+            color: #b8bec9;
+            font-size: 20px;
+            line-height: 1.7;
+        }
+
+        /* Main layout */
+
+        .about-section {
+            width: min(1150px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 42px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 12px;
+            font-size: 42px;
+        }
+
+        .section-heading p {
+            color: #aeb5c0;
+            font-size: 18px;
+        }
+
+        /* Intro section */
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 38px;
+            align-items: center;
+
+            margin-bottom: 80px;
+        }
+
+        .intro-image {
+            min-height: 460px;
+            overflow: hidden;
+
+            background: #121620;
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 20px;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-content h2 {
+            margin-bottom: 18px;
+            font-size: 42px;
+        }
+
+        .intro-content p {
+            margin-bottom: 18px;
+
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .highlight {
+            color: #80bcff;
+            font-weight: bold;
+        }
+
+        /* Mission */
+
+        .mission-box {
+            margin-bottom: 80px;
+            padding: 50px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(39, 105, 195, 0.22),
+                    rgba(93, 45, 142, 0.2)
+                );
+
+            border: 1px solid rgba(118, 172, 255, 0.26);
+            border-radius: 22px;
+        }
+
+        .mission-box h2 {
+            margin-bottom: 18px;
+            font-size: 38px;
+        }
+
+        .mission-box p {
+            max-width: 760px;
+            margin: auto;
+
+            color: #c4cad4;
+            font-size: 19px;
+            line-height: 1.75;
+        }
+
+        /* Values */
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+
+            margin-bottom: 80px;
+        }
+
+        .value-card {
+            padding: 30px;
+
+            background: rgba(24, 28, 40, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 19px;
+
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-7px);
+
+            border-color: #4b99ff;
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 58px;
+            height: 58px;
+
+            margin-bottom: 20px;
+
+            font-size: 29px;
+
+            background: rgba(40, 121, 228, 0.18);
+            border: 1px solid rgba(93, 169, 255, 0.25);
+            border-radius: 15px;
+        }
+
+        .value-card h3 {
+            margin-bottom: 12px;
+            font-size: 25px;
+        }
+
+        .value-card p {
+            color: #bdc3ce;
+            line-height: 1.7;
+        }
+
+        /* Journey */
+
+        .journey-section {
+            margin-bottom: 80px;
+        }
+
+        .timeline {
+            position: relative;
+
+            display: grid;
+            gap: 23px;
+
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 25px;
+
+            width: 2px;
+
+            background: rgba(93, 169, 255, 0.32);
+        }
+
+        .timeline-item {
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 52px 1fr;
+            gap: 20px;
+        }
+
+        .timeline-marker {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 52px;
+            height: 52px;
+
+            font-weight: bold;
+
+            background: #2879e4;
+            border: 5px solid #101521;
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            padding: 23px;
+
+            background: rgba(24, 28, 40, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 16px;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 9px;
+            font-size: 23px;
+        }
+
+        .timeline-content p {
+            color: #bdc3ce;
+            line-height: 1.7;
+        }
+
+        /* Projects */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+
+            margin-bottom: 80px;
+        }
+
+        .project-card {
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: #4b99ff;
+        }
+
+        .project-image {
+            height: 260px;
+            overflow: hidden;
+
+            background: #121620;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.04);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            font-size: 29px;
+        }
+
+        .project-content p {
+            margin-bottom: 20px;
+
+            color: #bdc3ce;
+            line-height: 1.7;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 11px 18px;
+
+            font-weight: bold;
+
+            background: #2879e4;
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .project-link:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        /* Founder section */
+
+        .founder-section {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 35px;
+            align-items: center;
+
+            margin-bottom: 80px;
+            padding: 34px;
+
+            background: rgba(24, 28, 40, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 22px;
+        }
+
+        .founder-image {
+            min-height: 370px;
+            overflow: hidden;
+
+            background: #121620;
+            border-radius: 16px;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-content h2 {
+            margin-bottom: 16px;
+            font-size: 37px;
+        }
+
+        .founder-content p {
+            margin-bottom: 16px;
+
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        /* Call to action */
+
+        .cta-section {
+            padding: 50px 30px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(39, 105, 195, 0.22),
+                    rgba(93, 45, 142, 0.2)
+                );
+
+            border: 1px solid rgba(118, 172, 255, 0.26);
+            border-radius: 22px;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 15px;
+            font-size: 38px;
+        }
+
+        .cta-section p {
+            max-width: 680px;
+            margin: 0 auto 24px;
+
+            color: #c1c7d2;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+
+            font-weight: bold;
+            text-align: center;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            background: #2879e4;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 950px) {
+            .intro-grid,
+            .founder-section {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-image {
+                min-height: 400px;
+            }
+
+            .founder-image {
+                min-height: 420px;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .values-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-box {
+                padding: 35px 22px;
+            }
+
+            .founder-section {
+                padding: 22px;
+            }
+
+            .founder-image {
+                min-height: 330px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero {
+                padding: 65px 18px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .about-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .intro-image {
+                min-height: 300px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 42px 1fr;
+                gap: 14px;
+            }
+
+            .timeline-marker {
+                width: 42px;
+                height: 42px;
+                font-size: 14px;
+            }
+
+            .cta-buttons .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            SG<span>games</span>
+        </a>
+
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="games.html">Games</a>
+            </li>
+
+            <li>
+                <a href="characters.html">Characters</a>
+            </li>
+
+            <li>
+                <a href="services.html">Services</a>
+            </li>
+
+            <li>
+                <a href="about.html" class="active">About</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="small-title">
+                Independent game development
+            </p>
+
+            <h1>About SGgames</h1>
+
+            <p>
+                SGgames is an independent game studio focused on creating
+                memorable worlds, interesting characters and games designed
+                around player enjoyment.
+            </p>
+        </div>
+    </header>
+
+    <main class="about-section">
+
+        <section class="intro-grid">
+
+            <div class="intro-image">
+                <img
+                    src="sggames-studio.jpg"
+                    alt="SGgames development workspace"
+                >
+            </div>
+
+            <div class="intro-content">
+                <h2>
+                    Building Games From the Ground Up
+                </h2>
+
+                <p>
+                    SGgames began as a personal game-development project and is
+                    growing into an independent studio with multiple games,
+                    characters, worlds and creative services.
+                </p>
+
+                <p>
+                    The main project is
+                    <span class="highlight">Tyrant's World</span>,
+                    an open-world fantasy RPG featuring races, classes,
+                    monsters, bosses, abilities, multiplayer systems and a
+                    large amount of original lore.
+                </p>
+
+                <p>
+                    SGgames also creates smaller projects such as
+                    <span class="highlight">Zombie Hunt</span>.
+                    These smaller games make it possible to experiment with
+                    new ideas while continuing development on larger projects.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="mission-box">
+            <h2>
+                The Mission
+            </h2>
+
+            <p>
+                SGgames aims to bring back the feeling of the golden age of
+                gaming by creating games built around fun, discovery,
+                challenge and memorable experiences rather than predatory
+                monetisation or pay-to-win systems.
+            </p>
+        </section>
+
+        <section>
+
+            <div class="section-heading">
+                <h2>What SGgames Stands For</h2>
+
+                <p>
+                    The values guiding every project.
+                </p>
+            </div>
+
+            <div class="values-grid">
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        🎮
+                    </div>
+
+                    <h3>
+                        Gameplay First
+                    </h3>
+
+                    <p>
+                        Games should be enjoyable to play. Mechanics,
+                        progression, combat and exploration should create a
+                        strong experience instead of existing only to sell
+                        additional content.
+                    </p>
+                </article>
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        🌍
+                    </div>
+
+                    <h3>
+                        Original Worlds
+                    </h3>
+
+                    <p>
+                        Every project should have its own identity, characters,
+                        lore and atmosphere instead of feeling like a copy of
+                        something that already exists.
+                    </p>
+                </article>
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        🛡️
+                    </div>
+
+                    <h3>
+                        No Pay to Win
+                    </h3>
+
+                    <p>
+                        Player success should come from skill, strategy,
+                        exploration and progression rather than spending more
+                        money than other players.
+                    </p>
+                </article>
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        🧪
+                    </div>
+
+                    <h3>
+                        Experimentation
+                    </h3>
+
+                    <p>
+                        Smaller games and unusual mechanics make it possible to
+                        test ideas, learn new systems and discover what creates
+                        enjoyable gameplay.
+                    </p>
+                </article>
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        📖
+                    </div>
+
+                    <h3>
+                        Strong Lore
+                    </h3>
+
+                    <p>
+                        Characters, monsters, locations and abilities should
+                        feel connected to the world and have reasons for
+                        existing beyond their gameplay function.
+                    </p>
+                </article>
+
+                <article class="value-card">
+                    <div class="value-icon">
+                        🚀
+                    </div>
+
+                    <h3>
+                        Long-Term Growth
+                    </h3>
+
+                    <p>
+                        SGgames is being developed gradually, with every
+                        released game, new system and completed project helping
+                        the studio move toward larger goals.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="journey-section">
+
+            <div class="section-heading">
+                <h2>The Development Journey</h2>
+
+                <p>
+                    Important stages in the growth of SGgames.
+                </p>
+            </div>
+
+            <div class="timeline">
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        1
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            Learning Game Development
+                        </h3>
+
+                        <p>
+                            SGgames began through learning programming,
+                            modelling, level design, game engines and the
+                            different systems required to build complete games.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        2
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            Tyrant's World Begins
+                        </h3>
+
+                        <p>
+                            The first major SGgames project began as an
+                            ambitious fantasy RPG containing an open world,
+                            character progression, bosses, magic and
+                            multiplayer features.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        3
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            Public Store Presence
+                        </h3>
+
+                        <p>
+                            Tyrant's World received a public Steam store page,
+                            allowing players to discover the project and add it
+                            to their wishlists during development.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        4
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            Smaller Games and Services
+                        </h3>
+
+                        <p>
+                            Projects such as Zombie Hunt and custom character
+                            services allow SGgames to release smaller work,
+                            test new ideas and continue building experience.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-marker">
+                        5
+                    </div>
+
+                    <div class="timeline-content">
+                        <h3>
+                            The Future
+                        </h3>
+
+                        <p>
+                            The long-term goal is to grow SGgames into a larger
+                            studio capable of creating more ambitious games and
+                            eventually expanding into additional creative
+                            projects.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div class="section-heading">
+                <h2>Current Projects</h2>
+
+                <p>
+                    The games currently representing SGgames.
+                </p>
+            </div>
+
+            <div class="project-grid">
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img
+                            src="tyrants-world.png"
+                            alt="Tyrant's World game"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="project-content">
+                        <h3>
+                            Tyrant's World
+                        </h3>
+
+                        <p>
+                            An open-world fantasy RPG filled with monsters,
+                            bosses, races, classes, abilities, ancient threats
+                            and multiplayer gameplay.
+                        </p>
+
+                        <a href="games.html" class="project-link">
+                            Explore the Game
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img
+                            src="zombie-hunt.png"
+                            alt="Zombie Hunt game"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="project-content">
+                        <h3>
+                            Zombie Hunt
+                        </h3>
+
+                        <p>
+                            A smaller survival game where players fight through
+                            waves of zombies while dealing with limited
+                            supplies and the constant danger of infection.
+                        </p>
+
+                        <a href="games.html" class="project-link">
+                            Explore the Game
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="founder-section">
+
+            <div class="founder-image">
+                <img
+                    src="founder.jpg"
+                    alt="Founder of SGgames"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="founder-content">
+                <h2>
+                    About the Founder
+                </h2>
+
+                <p>
+                    SGgames was founded by an independent developer from
+                    Norway with experience in game development, programming,
+                    3D modelling, website creation, video production and
+                    online content.
+                </p>
+
+                <p>
+                    The studio is currently being built through practical
+                    projects, continuous learning and the goal of turning
+                    original ideas into finished games that people can play.
+                </p>
+
+                <p>
+                    Development includes work with engines and tools such as
+                    Unreal Engine, Blender, programming software and digital
+                    design tools.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="cta-section">
+            <h2>
+                Follow the Development
+            </h2>
+
+            <p>
+                Explore the games, meet the characters and follow SGgames as
+                new projects and development updates are released.
+            </p>
+
+            <div class="cta-buttons">
+                <a
+                    href="games.html"
+                    class="button primary-button"
+                >
+                    View the Games
+                </a>
+
+                <a
+                    href="characters.html"
+                    class="button secondary-button"
+                >
+                    Meet the Characters
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
