@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Meet the characters, villains, monsters and legendary beings of Tyrant's World."
+    >
+
+    <title>Characters | SGgames</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at top, #202842 0%, #0d1018 45%, #08090d 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 430px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 90px 20px;
+            text-align: center;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .small-title {
+            margin-bottom: 18px;
+
+            color: #74b7ff;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+            font-size: clamp(44px, 8vw, 84px);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+
+            color: #b8bec9;
+            font-size: 20px;
+            line-height: 1.7;
+        }
+
+        /* Main section */
+
+        .characters-section {
+            width: min(1250px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 12px;
+            font-size: 42px;
+        }
+
+        .section-heading p {
+            color: #aeb5c0;
+            font-size: 18px;
+        }
+
+        /* Filters */
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-bottom: 42px;
+        }
+
+        .filter-button {
+            padding: 10px 17px;
+
+            color: #dce1e9;
+            cursor: pointer;
+
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 100px;
+
+            transition: 0.25s;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            color: white;
+            background: #2879e4;
+            border-color: #2879e4;
+        }
+
+        /* Character grid */
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .character-card {
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                box-shadow 0.3s,
+                opacity 0.25s;
+        }
+
+        .character-card:hover {
+            transform: translateY(-8px);
+
+            border-color: #4b99ff;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .character-card.hidden {
+            display: none;
+        }
+
+        .character-image {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+            background: #121620;
+        }
+
+        .character-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: transform 0.4s;
+        }
+
+        .character-card:hover .character-image img {
+            transform: scale(1.04);
+        }
+
+        .character-type {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+
+            padding: 7px 12px;
+
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            background: rgba(7, 9, 15, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 100px;
+
+            backdrop-filter: blur(8px);
+        }
+
+        .character-content {
+            padding: 24px;
+        }
+
+        .character-content h3 {
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .character-title {
+            margin-bottom: 17px;
+            color: #6eb2ff;
+            font-weight: bold;
+        }
+
+        .character-description {
+            min-height: 132px;
+            margin-bottom: 20px;
+
+            color: #bdc3ce;
+            line-height: 1.65;
+        }
+
+        .character-details {
+            display: grid;
+            gap: 9px;
+
+            margin-bottom: 22px;
+            list-style: none;
+        }
+
+        .character-details li {
+            padding: 10px 12px;
+
+            color: #d9dee6;
+            font-size: 14px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            color: #80bcff;
+            font-weight: bold;
+        }
+
+        .learn-more {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 18px;
+
+            color: white;
+            font-weight: bold;
+            text-align: center;
+
+            background: #2879e4;
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .learn-more:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        /* Lore section */
+
+        .lore-section {
+            margin-top: 80px;
+            padding: 48px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(39, 105, 195, 0.22),
+                    rgba(93, 45, 142, 0.2)
+                );
+
+            border: 1px solid rgba(118, 172, 255, 0.26);
+            border-radius: 22px;
+        }
+
+        .lore-section h2 {
+            margin-bottom: 15px;
+            font-size: 36px;
+        }
+
+        .lore-section p {
+            max-width: 750px;
+            margin: 0 auto 24px;
+
+            color: #c1c7d2;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .lore-button {
+            display: inline-block;
+            padding: 13px 22px;
+
+            font-weight: bold;
+
+            background: #2879e4;
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .lore-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1050px) {
+            .characters-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .characters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .character-image {
+                height: 420px;
+            }
+
+            .character-description {
+                min-height: auto;
+            }
+
+            .lore-section {
+                padding: 32px 22px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hero {
+                padding: 65px 18px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .characters-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .character-image {
+                height: 340px;
+            }
+
+            .character-content {
+                padding: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">SG<span>games</span></a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="characters.html" class="active">Characters</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="small-title">Tyrant's World</p>
+
+            <h1>Characters</h1>
+
+            <p>
+                Meet the heroes, villains, monsters and legendary beings that
+                shape the world of Tyrant's World.
+            </p>
+        </div>
+    </header>
+
+    <main class="characters-section">
+
+        <div class="section-heading">
+            <h2>Featured Characters</h2>
+
+            <p>
+                Explore some of the most important beings currently planned for
+                Tyrant's World.
+            </p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-button active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-button" data-filter="villain">
+                Villains
+            </button>
+
+            <button class="filter-button" data-filter="boss">
+                Bosses
+            </button>
+
+            <button class="filter-button" data-filter="monster">
+                Monsters
+            </button>
+
+            <button class="filter-button" data-filter="other">
+                Other
+            </button>
+        </div>
+
+        <div class="characters-grid">
+
+            <!-- Margaret -->
+
+            <article class="character-card" data-category="villain boss">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/margaret.jpg"
+                        alt="Margaret the Puppet Master"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Villain
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Margaret</h3>
+
+                    <p class="character-title">
+                        The Puppet Master
+                    </p>
+
+                    <p class="character-description">
+                        A mysterious and dangerous woman who controls puppets and
+                        bends others to her will. Margaret turns the battlefield
+                        into a stage where everyone else is forced to perform.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Role:</span>
+                            Major villain
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Power:</span>
+                            Puppet manipulation
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Theme:</span>
+                            Dark fantasy and horror
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+            <!-- Ifrit -->
+
+            <article class="character-card" data-category="villain boss">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/ifrit.jpg"
+                        alt="Ifrit, the ancient fire being"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Dark God
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Ifrit</h3>
+
+                    <p class="character-title">
+                        The Unquenchable Flame
+                    </p>
+
+                    <p class="character-description">
+                        An ancient half-human, half-demon force of nature whose
+                        flames are so powerful that only he can extinguish them.
+                        He cannot be defeated through ordinary strength.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Role:</span>
+                            Ancient threat
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Power:</span>
+                            Unstoppable fire
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Status:</span>
+                            Sealed for 2,000 years
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+            <!-- Hades -->
+
+            <article class="character-card" data-category="villain boss">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/hades.jpg"
+                        alt="Hades from Tyrant's World"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Villain
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Hades</h3>
+
+                    <p class="character-title">
+                        The Forgotten Corruption
+                    </p>
+
+                    <p class="character-description">
+                        Hades does not rely only on destructive power. He corrupts
+                        noble people, destroys their lives and leaves them to live
+                        with the consequences of what he forced them to do.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Role:</span>
+                            Psychological villain
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Power:</span>
+                            Possession and corruption
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Curse:</span>
+                            Mortals forget him
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+            <!-- Arachne -->
+
+            <article class="character-card" data-category="monster boss">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/arachne.jpg"
+                        alt="Arachne, the spider boss"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Boss
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Arachne</h3>
+
+                    <p class="character-title">
+                        The Web Queen
+                    </p>
+
+                    <p class="character-description">
+                        A powerful spider creature who controls the battlefield
+                        using webs, cocoons, poison and summoned creatures.
+                        Escaping her domain is often harder than surviving her.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Health:</span>
+                            5,000 HP
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Power:</span>
+                            Webs and stacking poison
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Minions:</span>
+                            Spiders and scorpions
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+            <!-- Shinigami -->
+
+            <article class="character-card" data-category="monster boss">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/shinigami.jpg"
+                        alt="Shinigami, the undead boss"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Boss
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Shinigami</h3>
+
+                    <p class="character-title">
+                        The Bound Undead
+                    </p>
+
+                    <p class="character-description">
+                        A terrifying undead boss who hunts the strongest member
+                        of a group. Beneath the horror is a being trapped in an
+                        existence from which death may finally free him.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Health:</span>
+                            20,000 HP
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Target:</span>
+                            Highest-level player
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Power:</span>
+                            Fear and screams
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+            <!-- Nyx -->
+
+            <article class="character-card" data-category="other">
+
+                <div class="character-image">
+                    <img
+                        src="images/characters/nyx.jpg"
+                        alt="Nyx Bloodfallen"
+                        loading="lazy"
+                    >
+
+                    <span class="character-type">
+                        Vampire
+                    </span>
+                </div>
+
+                <div class="character-content">
+                    <h3>Nyx Bloodfallen</h3>
+
+                    <p class="character-title">
+                        The Half-Blood Vampire
+                    </p>
+
+                    <p class="character-description">
+                        A half-human, half-vampire woman who ages far more slowly
+                        than ordinary humans. She can tolerate sunlight, but her
+                        hunger and vampire nature still make her dangerous.
+                    </p>
+
+                    <ul class="character-details">
+                        <li>
+                            <span class="detail-label">Race:</span>
+                            Half human, half vampire
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Trait:</span>
+                            Sunlight resistance
+                        </li>
+
+                        <li>
+                            <span class="detail-label">Loyalty:</span>
+                            Independent
+                        </li>
+                    </ul>
+
+                    <a href="#" class="learn-more">
+                        Full Profile Coming Soon
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <section class="lore-section">
+            <h2>A World Full of Legends</h2>
+
+            <p>
+                Tyrant's World contains gods, monsters, warriors, mages,
+                vampires, demons and beings whose stories stretch back thousands
+                of years. More character profiles will be added as development
+                continues.
+            </p>
+
+            <a href="games.html" class="lore-button">
+                View Tyrant's World
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const characterCards = document.querySelectorAll(".character-card");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const selectedFilter = button.dataset.filter;
+
+                filterButtons.forEach((item) => {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                characterCards.forEach((card) => {
+                    const categories = card.dataset.category.split(" ");
+
+                    const shouldShow =
+                        selectedFilter === "all" ||
+                        categories.includes(selectedFilter);
+
+                    card.classList.toggle("hidden", !shouldShow);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
