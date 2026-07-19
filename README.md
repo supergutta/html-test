@@ -91,7 +91,7 @@ style="border: 2px solid black">
 </iframe>
 <br>
 <script src="https://time.now/static/js/widget-loader.js" async defer></script>
-<a href="https://time.now/" class="time-now-widget" data-widget-type="digital" data-timezone="asia/tokyo" data-style="retro-lcd" data-width="300" data-title="Time in shibuya" data-bgColor="#ffffff" data-textColor="#000000" data-show-seconds="true" data-show-date="true" data-format-12-hour="false">Time in New York</a>
+<a href="https://time.now/" class="time-now-widget" data-widget-type="digital" data-timezone="asia/tokyo" data-style="retro-lcd" data-width="300" data-title="Time in shibuya" data-bgColor="#ffffff" data-textColor="#000000" data-show-seconds="true" data-show-date="true" data-format-12-hour="false">Time in tokyo</a>
 <br>
 
 
