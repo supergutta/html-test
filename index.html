@@ -23,17 +23,18 @@
 
     <style>
         :root {
-            --background: #090d12;
-            --background-light: #111923;
-            --card: rgba(18, 27, 38, 0.92);
-            --card-hover: rgba(24, 36, 50, 0.96);
+            --background: #08090d;
+            --background-light: #101521;
+            --card: rgba(24, 28, 40, 0.94);
+            --card-hover: rgba(29, 35, 50, 0.98);
             --text: #f4f6f8;
-            --muted-text: #b2bdc9;
-            --gold: #e6b84b;
-            --gold-light: #ffd979;
-            --green: #1f8f5f;
-            --border: rgba(230, 184, 75, 0.34);
-            --shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+            --muted-text: #b8bec9;
+            --blue: #2879e4;
+            --blue-light: #74b7ff;
+            --blue-soft: rgba(40, 121, 228, 0.18);
+            --border: rgba(255, 255, 255, 0.12);
+            --accent-border: rgba(93, 169, 255, 0.32);
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
         }
 
         * {
@@ -49,17 +50,7 @@
             min-height: 100vh;
             color: var(--text);
             background:
-                radial-gradient(
-                    circle at top,
-                    rgba(31, 143, 95, 0.18),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    180deg,
-                    #101922 0%,
-                    var(--background) 45%,
-                    #050709 100%
-                );
+                radial-gradient(circle at top, #202842 0%, #0d1018 45%, #08090d 100%);
             font-family:
                 Inter,
                 Arial,
@@ -123,7 +114,7 @@
             padding: 7px 16px;
             border: 1px solid var(--border);
             border-radius: 999px;
-            color: var(--gold-light);
+            color: var(--blue-light);
             background: rgba(0, 0, 0, 0.38);
             font-size: 0.82rem;
             font-weight: 700;
@@ -140,11 +131,11 @@
             letter-spacing: -0.045em;
             text-shadow:
                 0 4px 0 rgba(0, 0, 0, 0.45),
-                0 0 30px rgba(230, 184, 75, 0.22);
+                0 0 30px rgba(40, 121, 228, 0.24);
         }
 
         h1 span {
-            color: var(--gold);
+            color: var(--blue);
         }
 
         .hero-description {
@@ -183,13 +174,9 @@
         }
 
         .button-primary {
-            color: #171105;
-            background: linear-gradient(
-                135deg,
-                var(--gold-light),
-                var(--gold)
-            );
-            box-shadow: 0 8px 25px rgba(230, 184, 75, 0.28);
+            color: white;
+            background: var(--blue);
+            box-shadow: 0 8px 25px rgba(40, 121, 228, 0.28);
         }
 
         .button-secondary {
@@ -225,7 +212,7 @@
         }
 
         .nav-logo {
-            color: var(--gold);
+            color: var(--blue);
             font-family: Georgia, "Times New Roman", serif;
             font-size: 1.3rem;
             font-weight: bold;
@@ -248,7 +235,30 @@
         }
 
         .nav-links a:hover {
-            color: var(--gold-light);
+            color: var(--blue-light);
+        }
+
+
+        .nav-logo span {
+            color: var(--blue-light);
+        }
+
+        .main-pages a {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #d6d9e0;
+            transition: 0.25s;
+        }
+
+        .main-pages a:hover,
+        .main-pages .active-page {
+            color: white;
+            background: var(--blue);
+        }
+
+        .main-pages a::after {
+            display: none;
         }
 
         /* Main layout */
@@ -270,7 +280,7 @@
 
         .section-label {
             margin: 0 0 7px;
-            color: var(--green);
+            color: var(--blue-light);
             font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 0.18em;
@@ -316,7 +326,7 @@
             position: absolute;
             top: -55px;
             right: 20px;
-            color: rgba(230, 184, 75, 0.07);
+            color: rgba(40, 121, 228, 0.07);
             font-family: Georgia, serif;
             font-size: 14rem;
             line-height: 1;
@@ -345,7 +355,7 @@
 
         .track:hover {
             transform: translateY(-4px);
-            border-color: var(--border);
+            border-color: var(--blue-light);
             background: rgba(0, 0, 0, 0.38);
         }
 
@@ -463,8 +473,8 @@
             place-items: center;
             border: 1px solid var(--border);
             border-radius: 50%;
-            color: var(--gold-light);
-            background: rgba(230, 184, 75, 0.08);
+            color: var(--blue-light);
+            background: rgba(40, 121, 228, 0.10);
             font-weight: 800;
         }
 
@@ -491,7 +501,7 @@
             inset: 0;
             background: linear-gradient(
                 135deg,
-                rgba(31, 143, 95, 0.18),
+                rgba(40, 121, 228, 0.18),
                 transparent 55%
             );
         }
@@ -545,7 +555,7 @@
 
         .widget-card h3 {
             margin: 0 0 14px;
-            color: var(--gold-light);
+            color: var(--blue-light);
             font-size: 1rem;
         }
 
@@ -564,7 +574,7 @@
         }
 
         footer strong {
-            color: var(--gold);
+            color: var(--blue);
         }
 
         /* Responsive layout */
@@ -587,7 +597,7 @@
 
             .nav-links {
                 justify-content: center;
-                gap: 13px;
+                gap: 8px;
             }
         }
 
@@ -642,7 +652,7 @@
         }
 
         .nav-links a.active {
-            color: var(--gold-light);
+            color: var(--blue-light);
         }
 
         .nav-links a.active::after {
@@ -660,7 +670,7 @@
             right: 0;
             bottom: -8px;
             height: 2px;
-            background: var(--gold);
+            background: var(--blue);
             transform: scaleX(0);
             transform-origin: center;
             transition: transform 0.2s ease;
@@ -680,9 +690,9 @@
         }
 
         .track.is-playing {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 1px rgba(230, 184, 75, 0.2),
-                        0 10px 30px rgba(230, 184, 75, 0.12);
+            border-color: var(--blue);
+            box-shadow: 0 0 0 1px rgba(40, 121, 228, 0.2),
+                        0 10px 30px rgba(40, 121, 228, 0.12);
         }
 
         .track.is-playing::before {
@@ -690,7 +700,7 @@
             position: absolute;
             top: 10px;
             right: 12px;
-            color: var(--gold-light);
+            color: var(--blue-light);
             font-size: 0.65rem;
             font-weight: 800;
             letter-spacing: 0.12em;
@@ -760,8 +770,8 @@
             place-items: center;
             border: 1px solid var(--border);
             border-radius: 50%;
-            color: #171105;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: white;
+            background: var(--blue);
             box-shadow: var(--shadow);
             font-size: 1.25rem;
             font-weight: 900;
@@ -787,7 +797,7 @@
             z-index: 1001;
             height: 3px;
             width: 0;
-            background: linear-gradient(90deg, var(--green), var(--gold));
+            background: var(--blue);
         }
 
         .game-card {
@@ -854,11 +864,11 @@
             </p>
 
             <div class="hero-buttons">
-                <a class="button button-primary" href="#tyrants-world">
+                <a class="button button-primary" href="games.html">
                     Explore Tyrant's World
                 </a>
 
-                <a class="button button-secondary" href="#about">
+                <a class="button button-secondary" href="about.html">
                     About SGgames
                 </a>
             </div>
@@ -867,18 +877,14 @@
 
     <nav class="navigation">
         <div class="navigation-inner">
-            <a class="nav-logo" href="#">
-                SGgames
-            </a>
-            <div class="webpages">
-                <a href="games.html">Games</a>
-            </div>
+            <a class="nav-logo" href="index.html">SG<span>games</span></a>
 
-            <div class="nav-links">
-                <a href="#music">Music</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#about">About</a>
-                <a href="#tokyo">Tokyo</a>
+            <div class="nav-links main-pages">
+                <a class="active-page" href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="characters.html">Characters</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
             </div>
         </div>
     </nav>
@@ -1188,25 +1194,6 @@
         }, { threshold: 0.12 });
 
         revealItems.forEach((item) => revealObserver.observe(item));
-
-        // Active navigation link
-        const sections = document.querySelectorAll("main section");
-        const navLinks = document.querySelectorAll(".nav-links a");
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-
-                navLinks.forEach((link) => {
-                    link.classList.toggle(
-                        "active",
-                        link.getAttribute("href") === `#${entry.target.id}`
-                    );
-                });
-            });
-        }, { rootMargin: "-35% 0px -55% 0px" });
-
-        sections.forEach((section) => sectionObserver.observe(section));
 
         // Make sure only one audio track plays at a time
         const audioPlayers = document.querySelectorAll("audio");
