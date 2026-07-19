@@ -2,28 +2,77 @@
 <head>
     <title>SGgames</title>
 <style>
-h1{color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); text-align: center; border: 2px solid darkblue;}
+h1.a{color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); text-align: center; border: 2px solid darkblue; font-size: 70px;}
 body{background-color: #afeeec}
 h3{color:rgb(0, 0, 0); background-color: rgb(255, 255, 255); border: 2px solid red;}
 img{border: 2px solid rgb(0, 0, 0)}
+
+.musicbox{
+    background-color: darkgreen;
+    border: 3px solid gold;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px auto;
+    width: 90%;
+    box-shadow: 8px 8px 15px gray;
+}
+
+.musicbox h3{
+    background-color: white;
+    color: black;
+    border: 2px solid red;
+    padding: 5px;
+}
+
+.musicbox audio{
+    margin: 10px;
+    border: 3px solid black;
+    border-radius: 40px;
+}
+#test{
+    background-color: rgb(255, 255, 255);
+    border: 4px solid rgb(0, 0, 0);
+}
 
 </style>
 <link style="border-radius: 50px;" rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-    
-    
-<script>
-
-</script>
-<h1><u>SGgames</u> </h1>
+<h1 class="a"><u>🗾SGgames🗾</u> </h1>
     <hr>
-<audio controls  loop src="sound.mp3" title="One of the sounds for Tyrnat's world"></audio>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
+    <a href="video.mp4" target="_blank">About us</a><br>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
+
+<BR>
+<div class="musicbox">
+    <h3>🎵 Tyrant's World sfx and music</h3>
+    <audio controls loop>
+        <source src="sound.mp3" type="audio/m">
+        <source src="sound.mp3" type="audio/mpeg">
+    </audio>
+    <audio controls loop>
+        <source src="sound2.mp3" type="audio/m">
+        <source src="sound2.mp3" type="audio/mpeg">
+    </audio>
+        <audio controls loop>
+        <source src="soundreality-wind-lake-sfx-522908.mp3" type="audio/m">
+        <source src="soundreality-wind-lake-sfx-522908.mp3" type="audio/mpeg">
+    </audio>
+    <audio controls loop>
+        <source src="mixkit-forest-birds-ambience-1210.wav" type="audio/wav">
+        <source src="mixkit-forest-birds-ambience-1210.wav" type="audio/mpeg">
+    </audio>
+</div>
 <br><br>
-    <a href="#about us">About us</a><br>
-    <a href="https://www.youtube.com" title="opens youtube" target="_blank">
+
+    <a href="Uten navn-2.png" title="opens image" target="_blank">
 <img src="Uten navn-2.png" alt="bottom right map" height="300" >
-<img src="uten navn-1.png" alt="bottom left map" height="300">
+    </a>
+    <a href="uten navn-1.png" title="opens image" target="_blank">
+<img style="margin-left: 10px;" src="uten navn-1.png" alt="bottom left map" height="300">
 </a>
 
 <h3><b><u>About us</u></b>
@@ -37,7 +86,7 @@ img{border: 2px solid rgb(0, 0, 0)}
 <iframe
 width="700"
 height="400"
-src="https://maps.google.com/maps?q=SHIBUYA&t=k&z=14&ie=UTF8&iwloc=&output=embed"
+src="https://maps.google.com/maps?q=shinjuku&t=&z=13&ie=UTF8&iwloc=&output=embed"
 style="border: 2px solid black">
 </iframe>
 <br>
