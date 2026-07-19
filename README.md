@@ -71,8 +71,8 @@ img{border: 2px solid rgb(0, 0, 0)}
     <a href="Uten navn-2.png" title="opens image" target="_blank">
 <img src="Uten navn-2.png" alt="bottom right map" height="300" >
     </a>
-    <a href="uten navn-1.png" title="opens image" target="_blank">
-<img style="margin-left: 10px;" src="uten navn-1.png" alt="bottom left map" height="300">
+    <a href="uten navn.png" title="opens image" target="_blank">
+<img style="margin-left: 10px;" src="uten navn.png" alt="bottom left map" height="300">
 </a>
 
 <h3><b><u>About us</u></b>
