@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Full profile of Margaret the Puppet Master, a major villain from Tyrant's World."
+    >
+
+    <title>Margaret the Puppet Master | SGgames</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="logo.png"
+    >
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #202842 0%,
+                    #0d1018 45%,
+                    #08090d 100%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            min-height: 560px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 90px 7% 70px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 7, 12, 0.97) 0%,
+                    rgba(5, 7, 12, 0.82) 42%,
+                    rgba(5, 7, 12, 0.25) 100%
+                ),
+                url("Images/margaret.png") center 25% / cover;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #0d1018 0%,
+                    transparent 45%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            max-width: 720px;
+        }
+
+        .character-label {
+            display: inline-block;
+
+            margin-bottom: 17px;
+            padding: 8px 14px;
+
+            color: #ddecff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            background: rgba(228, 40, 215, 0.2);
+            border: 1px solid rgba(255, 93, 215, 0.35);
+            border-radius: 100px;
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+        }
+
+        .hero-title {
+            margin-bottom: 22px;
+
+            color: #78b8ff;
+            font-size: clamp(21px, 3vw, 31px);
+            font-weight: bold;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: #c4cad4;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        /* Main layout */
+
+        .profile-section {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+
+            align-items: start;
+        }
+
+        /* Image panel */
+
+        .image-panel {
+            position: sticky;
+            top: 100px;
+
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            min-height: 560px;
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 18px 20px;
+
+            color: #aeb5c0;
+            font-size: 14px;
+            line-height: 1.6;
+
+            background: rgba(8, 10, 16, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Content panel */
+
+        .profile-content {
+            display: grid;
+            gap: 25px;
+        }
+
+        .content-card {
+            padding: 30px;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .content-card h2 {
+            margin-bottom: 17px;
+
+            font-size: 32px;
+        }
+
+        .content-card p {
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .content-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Basic information */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .detail-box {
+            padding: 15px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #ff78f6;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #e4e8ee;
+            font-weight: bold;
+        }
+
+        /* Abilities */
+
+        .abilities-list {
+            display: grid;
+            gap: 13px;
+
+            list-style: none;
+        }
+
+        .ability {
+            padding: 17px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #2879e4;
+            border-radius: 10px;
+        }
+
+        .ability h3 {
+            margin-bottom: 7px;
+
+            color: #e7edf5;
+            font-size: 19px;
+        }
+
+        .ability p {
+            font-size: 15px;
+        }
+
+        /* Quote */
+
+        .quote-card {
+            padding: 35px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(39, 105, 195, 0.22),
+                    rgba(93, 45, 142, 0.2)
+                );
+
+            border: 1px solid rgba(118, 172, 255, 0.26);
+            border-radius: 20px;
+        }
+
+        .quote-card blockquote {
+            max-width: 760px;
+            margin: auto;
+
+            color: #e8edf4;
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            line-height: 1.55;
+        }
+
+        .quote-card cite {
+            display: block;
+
+            margin-top: 17px;
+
+            color: #79b8ff;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* Navigation buttons */
+
+        .profile-navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 13px;
+
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+
+            font-weight: bold;
+            text-align: center;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            color: white;
+            background: #2879e4;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            color: #e3e6eb;
+
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-panel {
+                position: static;
+            }
+
+            .profile-image {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero {
+                min-height: 500px;
+                padding: 80px 22px 55px;
+
+                background:
+                    linear-gradient(
+                        to top,
+                        rgba(5, 7, 12, 0.98) 0%,
+                        rgba(5, 7, 12, 0.62) 70%
+                    ),
+                    url("Images/margaret.png") center / cover;
+            }
+
+            .profile-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .content-card {
+                padding: 23px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                min-height: 330px;
+            }
+
+            .profile-navigation .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            SG<span>games</span>
+        </a>
+
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="games.html">Games</a>
+            </li>
+
+            <li>
+                <a href="characters.html" class="active">
+                    Characters
+                </a>
+            </li>
+
+            <li>
+                <a href="service.html">Services</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="character-label">
+                Major Villain
+            </span>
+
+            <h1>
+                Margaret
+            </h1>
+
+            <p class="hero-title">
+                The Puppet Master
+            </p>
+
+            <p class="hero-description">
+                A mysterious and dangerous woman who transforms every battle
+                into a performance and forces everyone around her to play a
+                part in her twisted show.
+            </p>
+        </div>
+    </header>
+
+    <main class="profile-section">
+
+        <div class="profile-grid">
+
+            <aside class="image-panel">
+                <img
+                    src="Images/margaret.png"
+                    alt="Margaret the Puppet Master"
+                    class="profile-image"
+                >
+
+                <p class="image-caption">
+                    Margaret the Puppet Master, one of the major villains of
+                    Tyrant's World.
+                </p>
+            </aside>
+
+            <div class="profile-content">
+
+                <section class="content-card">
+                    <h2>
+                        Character Overview
+                    </h2>
+
+                    <p>
+                        Margaret is a mysterious and dangerous woman who
+                        controls puppets and bends others to her will. She
+                        turns the battlefield into a stage where everyone else
+                        is forced to perform.
+                    </p>
+
+                    <p>
+                        To Margaret, combat is not simply about defeating an
+                        opponent. It is a carefully prepared performance in
+                        which every movement, scream and death is another part
+                        of the show.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Basic Information
+                    </h2>
+
+                    <div class="details-grid">
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Full Name
+                            </span>
+
+                            <span class="detail-value">
+                                Margaret
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Title
+                            </span>
+
+                            <span class="detail-value">
+                                The Puppet Master
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Role
+                            </span>
+
+                            <span class="detail-value">
+                                Major Villain
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Alignment
+                            </span>
+
+                            <span class="detail-value">
+                                Evil
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Main Power
+                            </span>
+
+                            <span class="detail-value">
+                                Puppet Manipulation
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Theme
+                            </span>
+
+                            <span class="detail-value">
+                                Dark Fantasy and Horror
+                            </span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Personality
+                    </h2>
+
+                    <p>
+                        Margaret is calm, theatrical and controlling. She
+                        rarely loses her composure because she prefers to make
+                        others feel powerless before the battle has even
+                        properly begun.
+                    </p>
+
+                    <p>
+                        She treats people as tools, actors and unfinished
+                        puppets. Those who resist her control become challenges
+                        she is determined to break.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Powers and Abilities
+                    </h2>
+
+                    <ul class="abilities-list">
+
+                        <li class="ability">
+                            <h3>
+                                Puppet Manipulation
+                            </h3>
+
+                            <p>
+                                Margaret controls enchanted puppets using
+                                supernatural strings, allowing her to attack
+                                from several directions at once.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Living Marionette
+                            </h3>
+
+                            <p>
+                                She can attempt to control the movements of
+                                living targets, turning allies against each
+                                other or forcing victims into danger.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Cursed Strings
+                            </h3>
+
+                            <p>
+                                Her strings can bind, pull and suspend enemies,
+                                limiting their movement and leaving them open
+                                to attacks from her puppets.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                The Final Performance
+                            </h3>
+
+                            <p>
+                                Margaret fills the battlefield with puppets and
+                                strings, transforming the entire area into her
+                                personal stage.
+                            </p>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Combat Style
+                    </h2>
+
+                    <p>
+                        Margaret avoids fighting like an ordinary warrior. She
+                        controls the battlefield from a distance, traps players
+                        with strings and sends puppets to attack from several
+                        positions.
+                    </p>
+
+                    <p>
+                        Her encounter focuses on movement, awareness and
+                        deciding which threats must be destroyed first before
+                        the number of puppets becomes overwhelming.
+                    </p>
+                </section>
+
+                <section class="quote-card">
+                    <blockquote>
+                        “Every great performance requires actors. Do not worry.
+                        I have already chosen your role.”
+                    </blockquote>
+
+                    <cite>
+                        — Margaret, the Puppet Master
+                    </cite>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="profile-navigation">
+            <a
+                href="characters.html"
+                class="button secondary-button"
+            >
+                ← Back to Characters
+            </a>
+
+            <a
+                href="games.html"
+                class="button primary-button"
+            >
+                Explore Tyrant's World
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

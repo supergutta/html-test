@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Full profile of Nyx Bloodfallen, the half-human and half-vampire character from Tyrant's World."
+    >
+
+    <title>Nyx Bloodfallen | SGgames</title>
+
+        <link
+        rel="icon"
+        type="image/png"
+        href="logo.png"
+    >
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #202842 0%,
+                    #0d1018 45%,
+                    #08090d 100%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            min-height: 560px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 90px 7% 70px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 7, 12, 0.98) 0%,
+                    rgba(5, 7, 12, 0.84) 42%,
+                    rgba(5, 7, 12, 0.22) 100%
+                ),
+                url("Images/nyx.png") center 26% / cover;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #0d1018 0%,
+                    transparent 45%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            max-width: 760px;
+        }
+
+        .character-label {
+            display: inline-block;
+
+            margin-bottom: 17px;
+            padding: 8px 14px;
+
+            color: #ffdfe6;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            background: rgba(137, 31, 64, 0.24);
+            border: 1px solid rgba(220, 88, 122, 0.42);
+            border-radius: 100px;
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+        }
+
+        .hero-title {
+            margin-bottom: 22px;
+
+            color: #ff879f;
+            font-size: clamp(21px, 3vw, 31px);
+            font-weight: bold;
+        }
+
+        .hero-description {
+            max-width: 690px;
+
+            color: #c4cad4;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        /* Main layout */
+
+        .profile-section {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+
+            align-items: start;
+        }
+
+        /* Image panel */
+
+        .image-panel {
+            position: sticky;
+            top: 100px;
+
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            min-height: 560px;
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 18px 20px;
+
+            color: #aeb5c0;
+            font-size: 14px;
+            line-height: 1.6;
+
+            background: rgba(8, 10, 16, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Content cards */
+
+        .profile-content {
+            display: grid;
+            gap: 25px;
+        }
+
+        .content-card {
+            padding: 30px;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .content-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .content-card p {
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .content-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Details */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .detail-box {
+            padding: 15px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #ff879f;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #e4e8ee;
+            font-weight: bold;
+        }
+
+        /* Traits */
+
+        .traits-card {
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(108, 27, 51, 0.23),
+                    rgba(23, 25, 37, 0.7)
+                );
+
+            border: 1px solid rgba(223, 91, 126, 0.27);
+            border-radius: 20px;
+        }
+
+        .traits-card h2 {
+            margin-bottom: 17px;
+            font-size: 30px;
+        }
+
+        .trait-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .trait-row:last-child {
+            border-bottom: none;
+        }
+
+        .trait-name {
+            color: #b9c4cd;
+        }
+
+        .trait-value {
+            color: #ff9daf;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Abilities */
+
+        .abilities-list {
+            display: grid;
+            gap: 13px;
+
+            list-style: none;
+        }
+
+        .ability {
+            padding: 17px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #b63d62;
+            border-radius: 10px;
+        }
+
+        .ability h3 {
+            margin-bottom: 7px;
+
+            color: #e7edf5;
+            font-size: 19px;
+        }
+
+        .ability p {
+            font-size: 15px;
+        }
+
+        /* Blood warning */
+
+        .blood-card {
+            padding: 29px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(123, 26, 47, 0.27),
+                    rgba(42, 18, 27, 0.74)
+                );
+
+            border: 1px solid rgba(224, 78, 109, 0.31);
+            border-radius: 20px;
+        }
+
+        .blood-card h2 {
+            margin-bottom: 14px;
+            color: #ff8da5;
+            font-size: 30px;
+        }
+
+        .blood-card p {
+            color: #dac5ca;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        /* Independence card */
+
+        .independence-card {
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(45, 58, 92, 0.5),
+                    rgba(22, 25, 36, 0.86)
+                );
+
+            border: 1px solid rgba(122, 157, 220, 0.24);
+            border-radius: 20px;
+        }
+
+        .independence-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .independence-card p {
+            color: #c5ccd7;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .independence-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Quote */
+
+        .quote-card {
+            padding: 35px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(115, 28, 53, 0.31),
+                    rgba(20, 23, 34, 0.74)
+                );
+
+            border: 1px solid rgba(220, 88, 122, 0.3);
+            border-radius: 20px;
+        }
+
+        .quote-card blockquote {
+            max-width: 760px;
+            margin: auto;
+
+            color: #f2edf0;
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            line-height: 1.55;
+        }
+
+        .quote-card cite {
+            display: block;
+
+            margin-top: 17px;
+
+            color: #ff879f;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* Navigation buttons */
+
+        .profile-navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 13px;
+
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+
+            font-weight: bold;
+            text-align: center;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            color: white;
+            background: #2879e4;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            color: #e3e6eb;
+
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-panel {
+                position: static;
+            }
+
+            .profile-image {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero {
+                min-height: 500px;
+                padding: 80px 22px 55px;
+
+                background:
+                    linear-gradient(
+                        to top,
+                        rgba(5, 7, 12, 0.98) 0%,
+                        rgba(5, 7, 12, 0.65) 70%
+                    ),
+                    url("Images/nyx.png") center / cover;
+            }
+
+            .profile-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .content-card,
+            .independence-card {
+                padding: 23px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                min-height: 330px;
+            }
+
+            .trait-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .trait-value {
+                text-align: left;
+            }
+
+            .profile-navigation .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            SG<span>games</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+
+            <li>
+                <a href="characters.html" class="active">
+                    Characters
+                </a>
+            </li>
+
+            <li><a href="service.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+
+            <span class="character-label">
+                Half-Blood Vampire
+            </span>
+
+            <h1>
+                Nyx Bloodfallen
+            </h1>
+
+            <p class="hero-title">
+                The Independent Heir
+            </p>
+
+            <p class="hero-description">
+                A half-human and half-vampire woman who walks in daylight,
+                ages far more slowly than ordinary people and refuses to become
+                a servant of her father's bloodline.
+            </p>
+
+        </div>
+    </header>
+
+    <main class="profile-section">
+
+        <div class="profile-grid">
+
+            <aside class="image-panel">
+                <img
+                    src="Images/nyx.png"
+                    alt="Nyx Bloodfallen"
+                    class="profile-image"
+                >
+
+                <p class="image-caption">
+                    Nyx Bloodfallen, a rare half-vampire who possesses many of
+                    the strengths of her kind without all of their weaknesses.
+                </p>
+            </aside>
+
+            <div class="profile-content">
+
+                <section class="content-card">
+                    <h2>
+                        Character Overview
+                    </h2>
+
+                    <p>
+                        Nyx Bloodfallen is the daughter of a human and a
+                        powerful vampire. Her mixed blood allows her to survive
+                        sunlight and move among humans more easily than a
+                        full-blooded vampire.
+                    </p>
+
+                    <p>
+                        However, her human side does not remove her hunger.
+                        When Nyx feeds, she can continue draining a victim until
+                        nothing remains unless she deliberately stops herself.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Basic Information
+                    </h2>
+
+                    <div class="details-grid">
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Full Name
+                            </span>
+
+                            <span class="detail-value">
+                                Nyx Bloodfallen
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Race
+                            </span>
+
+                            <span class="detail-value">
+                                Half Human, Half Vampire
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Role
+                            </span>
+
+                            <span class="detail-value">
+                                Independent Character
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Bloodline
+                            </span>
+
+                            <span class="detail-value">
+                                Bloodfallen
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Main Strength
+                            </span>
+
+                            <span class="detail-value">
+                                Vampire Physiology
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Main Weakness
+                            </span>
+
+                            <span class="detail-value">
+                                Blood Hunger
+                            </span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="traits-card">
+                    <h2>
+                        Vampire Traits
+                    </h2>
+
+                    <div class="trait-row">
+                        <span class="trait-name">
+                            Ageing Rate
+                        </span>
+
+                        <span class="trait-value">
+                            Around 20× Slower
+                        </span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">
+                            Sunlight
+                        </span>
+
+                        <span class="trait-value">
+                            Tolerant
+                        </span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">
+                            Physical Strength
+                        </span>
+
+                        <span class="trait-value">
+                            Superhuman
+                        </span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">
+                            Healing
+                        </span>
+
+                        <span class="trait-value">
+                            Accelerated
+                        </span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">
+                            Loyalty
+                        </span>
+
+                        <span class="trait-value">
+                            Independent
+                        </span>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Personality
+                    </h2>
+
+                    <p>
+                        Nyx is independent, confident and unwilling to accept
+                        control simply because of her bloodline. She does not
+                        automatically obey her father or consider vampires
+                        superior to humans.
+                    </p>
+
+                    <p>
+                        She can be calm and intelligent, but her hunger creates
+                        a dangerous side that she must constantly manage. Nyx
+                        understands that one moment of lost control can turn a
+                        simple feeding into a death.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Powers and Abilities
+                    </h2>
+
+                    <ul class="abilities-list">
+
+                        <li class="ability">
+                            <h3>
+                                Blood Drain
+                            </h3>
+
+                            <p>
+                                Nyx can drain blood from a living target to
+                                restore her strength and satisfy her hunger.
+                                She may continue feeding until the victim dies.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Sunlight Tolerance
+                            </h3>
+
+                            <p>
+                                Unlike most full vampires, Nyx can move through
+                                daylight without burning or losing all of her
+                                strength.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Superhuman Strength
+                            </h3>
+
+                            <p>
+                                Her vampire blood grants her physical power
+                                beyond that of an ordinary human.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Accelerated Healing
+                            </h3>
+
+                            <p>
+                                Nyx can recover from wounds more quickly than
+                                humans, especially after consuming fresh blood.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Heightened Senses
+                            </h3>
+
+                            <p>
+                                Her hearing, sight and sense of smell allow her
+                                to detect nearby movement, danger and blood.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Slow Ageing
+                            </h3>
+
+                            <p>
+                                Nyx ages approximately twenty times more slowly
+                                than an ordinary human, allowing her to live for
+                                centuries while remaining physically young.
+                            </p>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="blood-card">
+                    <h2>
+                        The Danger of Feeding
+                    </h2>
+
+                    <p>
+                        Nyx does not merely take a small amount of blood by
+                        instinct. Once she begins feeding, her vampire nature
+                        pushes her to continue until the victim has been fully
+                        drained. Stopping requires self-control rather than a
+                        natural limit.
+                    </p>
+                </section>
+
+                <section class="independence-card">
+                    <h2>
+                        A Daughter Without Loyalty
+                    </h2>
+
+                    <p>
+                        Nyx is connected to one of the world's most dangerous
+                        vampire bloodlines, but she does not consider herself
+                        her father's servant. Her actions are based on her own
+                        goals, relationships and judgement.
+                    </p>
+
+                    <p>
+                        This makes her unpredictable. She may oppose her father,
+                        help the player or act entirely for herself depending on
+                        the situation. Her blood does not decide her loyalty.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Combat Style
+                    </h2>
+
+                    <p>
+                        Nyx fights with speed, close-range strength and attacks
+                        that allow her to recover health by draining enemies.
+                        She can remain active during daylight, making her more
+                        flexible than most vampire enemies.
+                    </p>
+
+                    <p>
+                        Her danger increases once she reaches a wounded target.
+                        A successful feeding can restore her strength and turn a
+                        nearly defeated Nyx back into a serious threat.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Story Potential
+                    </h2>
+
+                    <p>
+                        Nyx can become an ally, rival or enemy depending on the
+                        player's choices. Her independence allows her to appear
+                        in vampire storylines without automatically supporting
+                        the vampire lord.
+                    </p>
+
+                    <p>
+                        Players may have to decide whether they trust her,
+                        attempt to control her hunger or judge her based on the
+                        actions of her family.
+                    </p>
+                </section>
+
+                <section class="quote-card">
+                    <blockquote>
+                        “My blood tells me what I am. It does not decide who I
+                        serve.”
+                    </blockquote>
+
+                    <cite>
+                        — Nyx Bloodfallen
+                    </cite>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="profile-navigation">
+            <a
+                href="characters.html"
+                class="button secondary-button"
+            >
+                ← Back to Characters
+            </a>
+
+            <a
+                href="games.html"
+                class="button primary-button"
+            >
+                Explore Tyrant's World
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

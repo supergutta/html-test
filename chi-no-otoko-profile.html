@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Full profile of Chi no Otoko, the ancient vampire lord from Tyrant's World."
+    >
+
+    <title>Chi no Otoko | SGgames</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="logo.png"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #351722 0%,
+                    #11131c 42%,
+                    #08090d 100%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            min-height: 590px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 90px 7% 70px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 7, 12, 0.99) 0%,
+                    rgba(5, 7, 12, 0.86) 40%,
+                    rgba(5, 7, 12, 0.18) 100%
+                ),
+                url("Images/chi_no_otoko.png") center 18% / cover;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #0d1018 0%,
+                    transparent 48%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            max-width: 760px;
+        }
+
+        .character-label {
+            display: inline-block;
+
+            margin-bottom: 17px;
+            padding: 8px 14px;
+
+            color: #ffe2e7;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            background: rgba(137, 31, 64, 0.24);
+            border: 1px solid rgba(220, 88, 122, 0.42);
+            border-radius: 100px;
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+        }
+
+        .hero-title {
+            margin-bottom: 22px;
+
+            color: #ff879f;
+            font-size: clamp(21px, 3vw, 31px);
+            font-weight: bold;
+        }
+
+        .hero-description {
+            max-width: 690px;
+
+            color: #c4cad4;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        /* Main layout */
+
+        .profile-section {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+
+            align-items: start;
+        }
+
+        /* Image panel */
+
+        .image-panel {
+            position: sticky;
+            top: 100px;
+
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-image {
+            width: 100%;
+            min-height: 560px;
+            display: block;
+
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .image-caption {
+            padding: 18px 20px;
+
+            color: #aeb5c0;
+            font-size: 14px;
+            line-height: 1.6;
+
+            background: rgba(8, 10, 16, 0.82);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Content cards */
+
+        .profile-content {
+            display: grid;
+            gap: 25px;
+        }
+
+        .content-card {
+            padding: 30px;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .content-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .content-card p {
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .content-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Details */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .detail-box {
+            padding: 15px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #ff879f;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #e4e8ee;
+            font-weight: bold;
+        }
+
+        /* Traits */
+
+        .traits-card {
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(108, 27, 51, 0.26),
+                    rgba(23, 25, 37, 0.72)
+                );
+
+            border: 1px solid rgba(223, 91, 126, 0.29);
+            border-radius: 20px;
+        }
+
+        .traits-card h2 {
+            margin-bottom: 17px;
+            font-size: 30px;
+        }
+
+        .trait-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .trait-row:last-child {
+            border-bottom: none;
+        }
+
+        .trait-name {
+            color: #b9c4cd;
+        }
+
+        .trait-value {
+            color: #ff9daf;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Abilities */
+
+        .abilities-list {
+            display: grid;
+            gap: 13px;
+
+            list-style: none;
+        }
+
+        .ability {
+            padding: 17px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #b63d62;
+            border-radius: 10px;
+        }
+
+        .ability h3 {
+            margin-bottom: 7px;
+
+            color: #e7edf5;
+            font-size: 19px;
+        }
+
+        .ability p {
+            font-size: 15px;
+        }
+
+        /* Blood card */
+
+        .blood-card {
+            padding: 29px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(123, 26, 47, 0.3),
+                    rgba(42, 18, 27, 0.78)
+                );
+
+            border: 1px solid rgba(224, 78, 109, 0.33);
+            border-radius: 20px;
+        }
+
+        .blood-card h2 {
+            margin-bottom: 14px;
+            color: #ff8da5;
+            font-size: 30px;
+        }
+
+        .blood-card p {
+            color: #dac5ca;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        /* Relationship card */
+
+        .relationship-card {
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(45, 58, 92, 0.48),
+                    rgba(22, 25, 36, 0.87)
+                );
+
+            border: 1px solid rgba(122, 157, 220, 0.24);
+            border-radius: 20px;
+        }
+
+        .relationship-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .relationship-card p {
+            color: #c5ccd7;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .relationship-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Quote */
+
+        .quote-card {
+            padding: 35px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(115, 28, 53, 0.34),
+                    rgba(20, 23, 34, 0.76)
+                );
+
+            border: 1px solid rgba(220, 88, 122, 0.31);
+            border-radius: 20px;
+        }
+
+        .quote-card blockquote {
+            max-width: 760px;
+            margin: auto;
+
+            color: #f2edf0;
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            line-height: 1.55;
+        }
+
+        .quote-card cite {
+            display: block;
+
+            margin-top: 17px;
+
+            color: #ff879f;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* Navigation buttons */
+
+        .profile-navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 13px;
+
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+
+            font-weight: bold;
+            text-align: center;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            color: white;
+            background: #2879e4;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            color: #e3e6eb;
+
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-panel {
+                position: static;
+            }
+
+            .profile-image {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero {
+                min-height: 520px;
+                padding: 80px 22px 55px;
+
+                background:
+                    linear-gradient(
+                        to top,
+                        rgba(5, 7, 12, 0.99) 0%,
+                        rgba(5, 7, 12, 0.66) 72%
+                    ),
+                    url("Images/chi_no_otoko.png") center top / cover;
+            }
+
+            .profile-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .content-card,
+            .relationship-card {
+                padding: 23px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                min-height: 330px;
+            }
+
+            .trait-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .trait-value {
+                text-align: left;
+            }
+
+            .profile-navigation .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            SG<span>games</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+
+            <li>
+                <a href="characters.html" class="active">
+                    Characters
+                </a>
+            </li>
+
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+
+            <span class="character-label">
+                Ancient Vampire Lord
+            </span>
+
+            <h1>
+                Chi no Otoko
+            </h1>
+
+            <p class="hero-title">
+                The Man of Blood
+            </p>
+
+            <p class="hero-description">
+                An ancient vampire lord whose power, patience and control over
+                blood have made him one of the most feared figures in Tyrant's World.
+            </p>
+
+        </div>
+    </header>
+
+    <main class="profile-section">
+
+        <div class="profile-grid">
+
+            <aside class="image-panel">
+                <img
+                    src="Images/chi_no_otoko.png"
+                    alt="Chi no Otoko"
+                    class="profile-image"
+                >
+
+                <p class="image-caption">
+                    Chi no Otoko, the ancient vampire lord known as the Man of Blood.
+                </p>
+            </aside>
+
+            <div class="profile-content">
+
+                <section class="content-card">
+                    <h2>
+                        Character Overview
+                    </h2>
+
+                    <p>
+                        Chi no Otoko is not a mindless creature controlled by hunger.
+                        He is intelligent, calm and fully aware of the fear his presence
+                        creates. He treats blood as both nourishment and power.
+                    </p>
+
+                    <p>
+                        He has lived long enough to watch kingdoms rise and disappear,
+                        giving him a patience that most mortal enemies cannot match.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Basic Information
+                    </h2>
+
+                    <div class="details-grid">
+
+                        <div class="detail-box">
+                            <span class="detail-label">Full Name</span>
+                            <span class="detail-value">Chi no Otoko</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">Title</span>
+                            <span class="detail-value">Vampire Lord</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">Race</span>
+                            <span class="detail-value">Full-Blooded Vampire</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">Role</span>
+                            <span class="detail-value">Major Villain</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">Primary Power</span>
+                            <span class="detail-value">Blood Manipulation</span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">Known Relative</span>
+                            <span class="detail-value">Nyx Bloodfallen</span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="traits-card">
+                    <h2>
+                        Vampire Traits
+                    </h2>
+
+                    <div class="trait-row">
+                        <span class="trait-name">Age</span>
+                        <span class="trait-value">Ancient</span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">Threat Level</span>
+                        <span class="trait-value">Extreme</span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">Physical Strength</span>
+                        <span class="trait-value">Superhuman</span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">Regeneration</span>
+                        <span class="trait-value">Blood-Fuelled</span>
+                    </div>
+
+                    <div class="trait-row">
+                        <span class="trait-name">Combat Behaviour</span>
+                        <span class="trait-value">Controlled and Predatory</span>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Personality
+                    </h2>
+
+                    <p>
+                        Chi no Otoko is calm, calculating and extremely confident.
+                        He rarely needs to shout because he expects his reputation
+                        and power to speak for him.
+                    </p>
+
+                    <p>
+                        He sees vampires as superior to mortals and considers his
+                        bloodline something that should command loyalty. His patience
+                        allows him to manipulate enemies long before he fights them.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Powers and Abilities
+                    </h2>
+
+                    <ul class="abilities-list">
+
+                        <li class="ability">
+                            <h3>Blood Drain</h3>
+                            <p>
+                                Drains blood from a living target to restore his strength
+                                and weaken the victim.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>Crimson Control</h3>
+                            <p>
+                                Manipulates exposed blood into blades, spikes and restraints.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>Vampiric Speed</h3>
+                            <p>
+                                Moves with supernatural speed, allowing him to reposition
+                                and attack before most enemies can react.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>Blood Regeneration</h3>
+                            <p>
+                                Repairs physical damage rapidly while enough blood remains available.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>Predator's Presence</h3>
+                            <p>
+                                Creates supernatural fear that can weaken the confidence
+                                and accuracy of lesser opponents.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>Lord of the Night</h3>
+                            <p>
+                                Becomes more dangerous in darkness, where his senses and
+                                hunting abilities are strongest.
+                            </p>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="blood-card">
+                    <h2>
+                        The Power of Blood
+                    </h2>
+
+                    <p>
+                        Blood is more than food to Chi no Otoko. It is a weapon,
+                        a source of regeneration and a symbol of control. The more
+                        wounded enemies surround him, the more dangerous the battle becomes.
+                    </p>
+                </section>
+
+                <section class="relationship-card">
+                    <h2>
+                        Father of Nyx Bloodfallen
+                    </h2>
+
+                    <p>
+                        Nyx is Chi no Otoko's half-human, half-vampire daughter.
+                        Unlike him, she tolerates sunlight and does not automatically
+                        accept the rule of her bloodline.
+                    </p>
+
+                    <p>
+                        Their relationship creates a conflict between family, control
+                        and independence. He may see Nyx as an heir, a possession or
+                        a challenge to everything he believes about vampire superiority.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Weaknesses
+                    </h2>
+
+                    <p>
+                        Chi no Otoko's strongest regeneration depends on access to blood.
+                        Starving him or preventing him from reaching wounded targets can
+                        reduce his ability to recover.
+                    </p>
+
+                    <p>
+                        His arrogance can also become a weakness. He may underestimate
+                        mortals, hybrids and tactics that do not fit his idea of power.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Combat Style
+                    </h2>
+
+                    <p>
+                        Chi no Otoko fights with controlled aggression. He uses speed,
+                        fear and blood manipulation to separate targets before closing
+                        the distance and draining them.
+                    </p>
+
+                    <p>
+                        He should feel more like an intelligent ruler than a wild monster,
+                        adapting to the player's behaviour and punishing careless attacks.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Story Role
+                    </h2>
+
+                    <p>
+                        His storyline can force the player to choose between confronting
+                        him directly, supporting Nyx, weakening his vampire followers or
+                        breaking the political power he holds over his territory.
+                    </p>
+
+                    <p>
+                        Meeting him should feel like entering the domain of a ruler with
+                        history, followers and personal motives rather than facing an
+                        ordinary boss.
+                    </p>
+                </section>
+
+                <section class="quote-card">
+                    <blockquote>
+                        “You count your life in years. I count mine in kingdoms.”
+                    </blockquote>
+
+                    <cite>
+                        — Chi no Otoko
+                    </cite>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="profile-navigation">
+            <a
+                href="characters.html"
+                class="button secondary-button"
+            >
+                ← Back to Characters
+            </a>
+
+            <a
+                href="games.html"
+                class="button primary-button"
+            >
+                Explore Tyrant's World
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

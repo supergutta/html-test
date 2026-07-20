@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Full profile of Shinigami, the Bound Undead, a terrifying boss from Tyrant's World."
+    >
+
+    <title>Shinigami the Bound Undead | SGgames</title>
+    <link
+        rel="icon"
+        type="image/png"
+        href="logo.png"
+    >
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #202842 0%,
+                    #0d1018 45%,
+                    #08090d 100%
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 16px 7%;
+
+            background: rgba(7, 9, 15, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #5da9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+
+            color: #d6d9e0;
+            border-radius: 8px;
+
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: white;
+            background: #286ed8;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            min-height: 560px;
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 90px 7% 70px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 7, 12, 0.98) 0%,
+                    rgba(5, 7, 12, 0.86) 42%,
+                    rgba(5, 7, 12, 0.24) 100%
+                ),
+                url("Images/shinigami.png") center 28% / cover;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    #0d1018 0%,
+                    transparent 45%
+                );
+
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+
+            max-width: 760px;
+        }
+
+        .character-label {
+            display: inline-block;
+
+            margin-bottom: 17px;
+            padding: 8px 14px;
+
+            color: #d9efff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            background: rgba(50, 107, 137, 0.22);
+            border: 1px solid rgba(106, 184, 220, 0.4);
+            border-radius: 100px;
+        }
+
+        .hero h1 {
+            margin-bottom: 12px;
+
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 0.98;
+        }
+
+        .hero-title {
+            margin-bottom: 22px;
+
+            color: #79c7ec;
+            font-size: clamp(21px, 3vw, 31px);
+            font-weight: bold;
+        }
+
+        .hero-description {
+            max-width: 690px;
+
+            color: #c4cad4;
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        /* Main layout */
+
+        .profile-section {
+            width: min(1200px, 92%);
+            margin: auto;
+            padding: 75px 0;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+
+            align-items: start;
+        }
+
+        /* Image panel */
+
+        .image-panel {
+            position: sticky;
+            top: 100px;
+
+            overflow: hidden;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            min-height: 560px;
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 18px 20px;
+
+            color: #aeb5c0;
+            font-size: 14px;
+            line-height: 1.6;
+
+            background: rgba(8, 10, 16, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Content cards */
+
+        .profile-content {
+            display: grid;
+            gap: 25px;
+        }
+
+        .content-card {
+            padding: 30px;
+
+            background: rgba(24, 28, 40, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .content-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .content-card p {
+            color: #bdc3ce;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .content-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Details */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .detail-box {
+            padding: 15px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 11px;
+        }
+
+        .detail-label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #79c7ec;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #e4e8ee;
+            font-weight: bold;
+        }
+
+        /* Abilities */
+
+        .abilities-list {
+            display: grid;
+            gap: 13px;
+
+            list-style: none;
+        }
+
+        .ability {
+            padding: 17px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #3f90b8;
+            border-radius: 10px;
+        }
+
+        .ability h3 {
+            margin-bottom: 7px;
+
+            color: #e7edf5;
+            font-size: 19px;
+        }
+
+        .ability p {
+            font-size: 15px;
+        }
+
+        /* Boss statistics */
+
+        .stats-card {
+            padding: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(36, 91, 119, 0.2),
+                    rgba(20, 29, 42, 0.6)
+                );
+
+            border: 1px solid rgba(109, 193, 230, 0.25);
+            border-radius: 20px;
+        }
+
+        .stats-card h2 {
+            margin-bottom: 17px;
+            font-size: 30px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-name {
+            color: #b9c4cd;
+        }
+
+        .stat-value {
+            color: #8dd9ff;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Tragedy card */
+
+        .tragedy-card {
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(41, 54, 67, 0.7),
+                    rgba(20, 23, 31, 0.9)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+        }
+
+        .tragedy-card h2 {
+            margin-bottom: 17px;
+            font-size: 32px;
+        }
+
+        .tragedy-card p {
+            color: #c4cbd3;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .tragedy-card p + p {
+            margin-top: 16px;
+        }
+
+        /* Quote */
+
+        .quote-card {
+            padding: 35px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(42, 90, 114, 0.25),
+                    rgba(19, 24, 34, 0.65)
+                );
+
+            border: 1px solid rgba(109, 193, 230, 0.28);
+            border-radius: 20px;
+        }
+
+        .quote-card blockquote {
+            max-width: 760px;
+            margin: auto;
+
+            color: #edf3f6;
+            font-size: clamp(20px, 3vw, 28px);
+            font-style: italic;
+            line-height: 1.55;
+        }
+
+        .quote-card cite {
+            display: block;
+
+            margin-top: 17px;
+
+            color: #79c7ec;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        /* Navigation buttons */
+
+        .profile-navigation {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 13px;
+
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 21px;
+
+            font-weight: bold;
+            text-align: center;
+
+            border-radius: 9px;
+
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            color: white;
+            background: #2879e4;
+        }
+
+        .primary-button:hover {
+            background: #4694fa;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            color: #e3e6eb;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 70px;
+            padding: 35px 20px;
+
+            color: #9299a5;
+            text-align: center;
+
+            background: #06070b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-panel {
+                position: static;
+            }
+
+            .profile-image {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .hero {
+                min-height: 500px;
+                padding: 80px 22px 55px;
+
+                background:
+                    linear-gradient(
+                        to top,
+                        rgba(5, 7, 12, 0.98) 0%,
+                        rgba(5, 7, 12, 0.66) 70%
+                    ),
+                    url("Images/shinigami.png") center / cover;
+            }
+
+            .profile-section {
+                width: 94%;
+                padding: 55px 0;
+            }
+
+            .content-card,
+            .tragedy-card {
+                padding: 23px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                min-height: 330px;
+            }
+
+            .stat-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .stat-value {
+                text-align: left;
+            }
+
+            .profile-navigation .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            SG<span>games</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+
+            <li>
+                <a href="characters.html" class="active">
+                    Characters
+                </a>
+            </li>
+
+            <li><a href="service.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+
+            <span class="character-label">
+                Undead Boss
+            </span>
+
+            <h1>
+                Shinigami
+            </h1>
+
+            <p class="hero-title">
+                The Bound Undead
+            </p>
+
+            <p class="hero-description">
+                A terrifying undead being who hunts the strongest member of
+                every group, spreads fear across the battlefield and longs for
+                the death that may finally release him.
+            </p>
+
+        </div>
+    </header>
+
+    <main class="profile-section">
+
+        <div class="profile-grid">
+
+            <aside class="image-panel">
+                <img
+                    src="Images/shinigami.png"
+                    alt="Shinigami the Bound Undead"
+                    class="profile-image"
+                >
+
+                <p class="image-caption">
+                    Shinigami, a powerful undead boss whose terrifying
+                    appearance hides a being trapped in endless suffering.
+                </p>
+            </aside>
+
+            <div class="profile-content">
+
+                <section class="content-card">
+                    <h2>
+                        Character Overview
+                    </h2>
+
+                    <p>
+                        Shinigami is a powerful undead creature bound to an
+                        existence he can no longer escape. He appears as a
+                        merciless hunter, but beneath the horror is a being
+                        desperate for permanent death.
+                    </p>
+
+                    <p>
+                        He does not attack randomly. Shinigami identifies the
+                        strongest person nearby and focuses his attention on
+                        them, treating their power as both a challenge and a
+                        possible path toward freedom.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Basic Information
+                    </h2>
+
+                    <div class="details-grid">
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Name
+                            </span>
+
+                            <span class="detail-value">
+                                Shinigami
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Title
+                            </span>
+
+                            <span class="detail-value">
+                                The Bound Undead
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Role
+                            </span>
+
+                            <span class="detail-value">
+                                Major Undead Boss
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Creature Type
+                            </span>
+
+                            <span class="detail-value">
+                                Undead
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Main Target
+                            </span>
+
+                            <span class="detail-value">
+                                Highest-Level Player
+                            </span>
+                        </div>
+
+                        <div class="detail-box">
+                            <span class="detail-label">
+                                Main Theme
+                            </span>
+
+                            <span class="detail-value">
+                                Fear and Imprisonment
+                            </span>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="stats-card">
+                    <h2>
+                        Boss Statistics
+                    </h2>
+
+                    <div class="stat-row">
+                        <span class="stat-name">
+                            Health
+                        </span>
+
+                        <span class="stat-value">
+                            20,000 HP
+                        </span>
+                    </div>
+
+                    <div class="stat-row">
+                        <span class="stat-name">
+                            Priority Target
+                        </span>
+
+                        <span class="stat-value">
+                            Strongest Player
+                        </span>
+                    </div>
+
+                    <div class="stat-row">
+                        <span class="stat-name">
+                            Combat Type
+                        </span>
+
+                        <span class="stat-value">
+                            Fear and Pursuit
+                        </span>
+                    </div>
+
+                    <div class="stat-row">
+                        <span class="stat-name">
+                            Threat Level
+                        </span>
+
+                        <span class="stat-value">
+                            Extreme
+                        </span>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Personality
+                    </h2>
+
+                    <p>
+                        Shinigami appears violent, relentless and cruel. He
+                        rarely shows hesitation and treats combat as if every
+                        battle may finally bring an end to his existence.
+                    </p>
+
+                    <p>
+                        His aggression comes from suffering rather than simple
+                        hatred. He has endured undeath for so long that victory
+                        and defeat have become equally meaningless unless one
+                        of them grants him freedom.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Powers and Abilities
+                    </h2>
+
+                    <ul class="abilities-list">
+
+                        <li class="ability">
+                            <h3>
+                                Hunter of the Strong
+                            </h3>
+
+                            <p>
+                                Shinigami identifies the highest-level player
+                                and treats them as his main target until they
+                                die or the encounter ends.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Scream of Terror
+                            </h3>
+
+                            <p>
+                                He releases a supernatural scream that inflicts
+                                fear, disrupts movement and can cause players
+                                to lose control temporarily.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Deathly Presence
+                            </h3>
+
+                            <p>
+                                Players standing near Shinigami feel their
+                                courage weaken, making it harder to fight
+                                effectively while remaining close to him.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Soul Pursuit
+                            </h3>
+
+                            <p>
+                                Shinigami can rapidly close the distance between
+                                himself and his chosen target, preventing the
+                                strongest player from escaping easily.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Undead Endurance
+                            </h3>
+
+                            <p>
+                                His undead body allows him to continue fighting
+                                after injuries that would kill most creatures.
+                            </p>
+                        </li>
+
+                        <li class="ability">
+                            <h3>
+                                Final Desperation
+                            </h3>
+
+                            <p>
+                                When his health becomes low, Shinigami becomes
+                                faster and more aggressive as he senses that
+                                permanent death may finally be close.
+                            </p>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="tragedy-card">
+                    <h2>
+                        The Prison of Undeath
+                    </h2>
+
+                    <p>
+                        Shinigami's greatest enemy is not the player. It is the
+                        curse that prevents him from truly dying. Every battle
+                        he fights is another attempt to find someone strong
+                        enough to end his suffering.
+                    </p>
+
+                    <p>
+                        This makes his defeat different from an ordinary boss
+                        victory. When players finally destroy him, Shinigami
+                        does not curse them or promise revenge. Instead, he
+                        realizes that his long imprisonment is finally over.
+                    </p>
+                </section>
+
+                <section class="content-card">
+                    <h2>
+                        Combat Style
+                    </h2>
+
+                    <p>
+                        Shinigami's encounter separates the strongest player
+                        from the rest of the group. That player must survive
+                        his direct attacks while the others manage fear
+                        effects, interrupt screams and create opportunities to
+                        damage him.
+                    </p>
+
+                    <p>
+                        Because he changes targets based on player level rather
+                        than distance, the party cannot simply hide its
+                        strongest member behind a tank. The group must protect
+                        whoever Shinigami has chosen.
+                    </p>
+                </section>
+
+                <section class="quote-card">
+                    <blockquote>
+                        “Finally… I’m now free.”
+                    </blockquote>
+
+                    <cite>
+                        — Shinigami's final words
+                    </cite>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="profile-navigation">
+            <a
+                href="characters.html"
+                class="button secondary-button"
+            >
+                ← Back to Characters
+            </a>
+
+            <a
+                href="games.html"
+                class="button primary-button"
+            >
+                Explore Tyrant's World
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>
+            © 2026 <strong>SGgames</strong>. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
