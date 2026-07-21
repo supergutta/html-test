@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Tyrant's World, an open-world fantasy RPG by SGgames featuring dangerous bosses, races, classes, magic, multiplayer adventures and a world shaped by player choice.">
+    <meta name="theme-color" content="#08090d">
+
+    <title>Tyrant's World | SGgames</title>
+
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <style>
+        :root {
+            --background: #08090d;
+            --background-light: #101521;
+            --card: rgba(24, 28, 40, 0.94);
+            --card-hover: rgba(29, 35, 50, 0.98);
+            --text: #f4f6f8;
+            --muted-text: #b8bec9;
+            --blue: #2879e4;
+            --blue-light: #74b7ff;
+            --blue-soft: rgba(40, 121, 228, 0.18);
+            --border: rgba(255, 255, 255, 0.12);
+            --accent-border: rgba(93, 169, 255, 0.32);
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
+            --danger: #d45a61;
+            --gold: #e4b85a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 50% -10%, #202842 0%, #0d1018 42%, #08090d 100%);
+            font-family: Inter, Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 72%);
+        }
+
+        img,
+        video,
+        iframe {
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1200;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-light));
+            box-shadow: 0 0 16px rgba(40, 121, 228, 0.75);
+        }
+
+        /* Navigation */
+
+        .navigation {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(7, 11, 15, 0.88);
+            backdrop-filter: blur(16px);
+        }
+
+        .navigation-inner {
+            width: min(1150px, calc(100% - 32px));
+            min-height: 66px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-logo {
+            color: var(--blue);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--blue-light);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #d6d9e0;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition:
+                color 0.2s ease,
+                background-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active-page {
+            color: white;
+            background: var(--blue);
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            min-height: 720px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            padding: 100px 24px 86px;
+            border-bottom: 1px solid var(--border);
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 8, 12, 0.97) 0%,
+                    rgba(4, 8, 12, 0.78) 48%,
+                    rgba(4, 8, 12, 0.52) 100%
+                ),
+                url("images/tyrants-world.png") center / cover;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 72% 42%, rgba(40, 121, 228, 0.22), transparent 32%),
+                linear-gradient(to top, #08090d 0%, transparent 35%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 160px;
+            background: linear-gradient(to top, #08090d, transparent);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            width: min(1150px, 100%);
+            margin: auto;
+        }
+
+        .hero-copy {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            padding: 7px 15px;
+            border: 1px solid var(--accent-border);
+            border-radius: 999px;
+            color: var(--blue-light);
+            background: rgba(7, 12, 20, 0.58);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 14px rgba(228, 184, 90, 0.9);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        h1 {
+            margin: 0;
+            max-width: 850px;
+            font-size: clamp(4rem, 11vw, 8.5rem);
+            line-height: 0.86;
+            letter-spacing: -0.055em;
+            text-shadow:
+                0 5px 0 rgba(0, 0, 0, 0.42),
+                0 0 34px rgba(40, 121, 228, 0.24);
+        }
+
+        h1 span {
+            display: block;
+            color: var(--blue-light);
+            font-size: 0.31em;
+            line-height: 1.2;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            text-shadow: none;
+        }
+
+        .hero-description {
+            max-width: 690px;
+            margin: 28px 0 0;
+            color: #d3dde7;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 50px;
+            padding: 12px 22px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-weight: 800;
+            text-decoration: none;
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: white;
+            background: var(--blue);
+            box-shadow: 0 8px 25px rgba(40, 121, 228, 0.3);
+        }
+
+        .button-primary:hover {
+            background: #3d8cf1;
+            box-shadow: 0 13px 32px rgba(40, 121, 228, 0.36);
+        }
+
+        .button-secondary {
+            border-color: rgba(255, 255, 255, 0.25);
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .button-secondary:hover {
+            border-color: var(--blue-light);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .hero-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .hero-fact {
+            padding: 7px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            color: #ced7e1;
+            background: rgba(0, 0, 0, 0.35);
+            font-size: 0.85rem;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Layout */
+
+        main {
+            width: min(1150px, calc(100% - 32px));
+            margin: auto;
+            padding: 78px 0 20px;
+        }
+
+        section {
+            margin-bottom: 96px;
+            scroll-margin-top: 94px;
+        }
+
+        .section-heading {
+            max-width: 770px;
+            margin-bottom: 32px;
+        }
+
+        .section-label {
+            margin: 0 0 8px;
+            color: var(--blue-light);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(2.25rem, 5vw, 3.6rem);
+            line-height: 1.07;
+        }
+
+        .section-description {
+            margin: 15px 0 0;
+            color: var(--muted-text);
+            font-size: 1.02rem;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent),
+                var(--card);
+            box-shadow: var(--shadow);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Overview */
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .overview-copy {
+            padding: clamp(26px, 5vw, 44px);
+        }
+
+        .overview-copy p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 1.04rem;
+        }
+
+        .overview-copy p + p {
+            margin-top: 17px;
+        }
+
+        .overview-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+            margin-top: 28px;
+        }
+
+        .overview-list div {
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 11px;
+            color: #e3e9ef;
+            background: rgba(0, 0, 0, 0.22);
+            font-size: 0.93rem;
+            font-weight: 700;
+        }
+
+        .overview-list div::before {
+            content: "◆";
+            margin-right: 8px;
+            color: var(--blue-light);
+            font-size: 0.72rem;
+        }
+
+        .overview-image {
+            position: relative;
+            min-height: 460px;
+            overflow: hidden;
+            background:
+                linear-gradient(to top, rgba(5, 8, 11, 0.96), rgba(5, 8, 11, 0.08)),
+                url("uten navn.png") center / cover;
+        }
+
+        .overview-image::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(40, 121, 228, 0.23), transparent 56%);
+        }
+
+        .image-note {
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: 22px;
+            z-index: 1;
+        }
+
+        .image-note strong {
+            display: block;
+            margin-bottom: 5px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.45rem;
+        }
+
+        .image-note span {
+            color: #c3ced9;
+            font-size: 0.91rem;
+        }
+
+        /* Feature cards */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .feature-card {
+            position: relative;
+            min-height: 260px;
+            overflow: hidden;
+            padding: 27px;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                background-color 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent-border);
+            background-color: var(--card-hover);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 21px;
+            border: 1px solid var(--accent-border);
+            border-radius: 14px;
+            color: var(--blue-light);
+            background: var(--blue-soft);
+            font-size: 1.35rem;
+            font-family: Georgia, serif;
+            font-weight: bold;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.42rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        .feature-card::after {
+            content: "";
+            position: absolute;
+            right: -45px;
+            bottom: -45px;
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(40, 121, 228, 0.13), transparent 68%);
+        }
+
+        /* World */
+
+        .world-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .world-card {
+            position: relative;
+            min-height: 390px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            padding: 26px;
+            isolation: isolate;
+            transition:
+                transform 0.28s ease,
+                border-color 0.28s ease;
+        }
+
+        .world-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--blue-light);
+        }
+
+        .world-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-position: center;
+            background-size: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .world-card:hover::before {
+            transform: scale(1.055);
+        }
+
+        .world-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to top, rgba(5, 8, 12, 0.99) 4%, rgba(5, 8, 12, 0.58) 52%, rgba(5, 8, 12, 0.18)),
+                linear-gradient(135deg, rgba(40, 121, 228, 0.17), transparent 55%);
+        }
+
+        .world-card.forest::before {
+            background-image: url("Uten navn-2.png");
+        }
+
+        .world-card.necropolis::before {
+            background-image:
+                radial-gradient(circle at top, rgba(72, 73, 118, 0.48), transparent 42%),
+                linear-gradient(145deg, #171d2d, #090b10 70%);
+        }
+
+        .world-card.utopia::before {
+            background-image:
+                radial-gradient(circle at 75% 18%, rgba(116, 183, 255, 0.45), transparent 21%),
+                linear-gradient(145deg, #1c395c, #0a1019 66%);
+        }
+
+        .world-tag {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--blue-light);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .world-card h3 {
+            margin: 0 0 9px;
+            font-size: 1.65rem;
+        }
+
+        .world-card p {
+            margin: 0;
+            color: #c2ccd7;
+            font-size: 0.92rem;
+        }
+
+        /* Bosses */
+
+        .boss-panel {
+            overflow: hidden;
+            padding: clamp(24px, 5vw, 42px);
+            background:
+                linear-gradient(135deg, rgba(132, 31, 42, 0.14), transparent 45%),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent),
+                var(--card);
+        }
+
+        .boss-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .boss-card {
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 13px;
+            background: rgba(0, 0, 0, 0.24);
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+        .boss-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 90, 97, 0.55);
+            background: rgba(50, 9, 15, 0.28);
+        }
+
+        .boss-card span {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--danger);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .boss-card h3 {
+            margin: 0 0 7px;
+            font-size: 1.17rem;
+        }
+
+        .boss-card p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 0.88rem;
+        }
+
+        /* Progression */
+
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+            counter-reset: path;
+        }
+
+        .path-card {
+            counter-increment: path;
+            position: relative;
+            padding: 25px;
+            overflow: hidden;
+        }
+
+        .path-card::before {
+            content: "0" counter(path);
+            display: block;
+            margin-bottom: 24px;
+            color: var(--blue-light);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.3rem;
+            font-weight: bold;
+            line-height: 1;
+            opacity: 0.88;
+        }
+
+        .path-card h3 {
+            margin: 0 0 8px;
+            font-size: 1.25rem;
+        }
+
+        .path-card p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* Development callout */
+
+        .development {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(30px, 6vw, 58px);
+            text-align: center;
+            border-color: var(--accent-border);
+            background:
+                radial-gradient(circle at 50% 0%, rgba(40, 121, 228, 0.25), transparent 40%),
+                linear-gradient(135deg, rgba(40, 121, 228, 0.12), rgba(24, 28, 40, 0.96));
+        }
+
+        .development::after {
+            content: "TW";
+            position: absolute;
+            right: -20px;
+            bottom: -88px;
+            color: rgba(116, 183, 255, 0.055);
+            font-family: Georgia, serif;
+            font-size: 15rem;
+            font-weight: bold;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .development > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .development h2 {
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .development p {
+            max-width: 730px;
+            margin: 18px auto 0;
+            color: var(--muted-text);
+        }
+
+        .development .hero-actions {
+            justify-content: center;
+        }
+
+        .notice {
+            max-width: 760px;
+            margin: 25px auto 0;
+            padding: 13px 17px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #cbd5df;
+            background: rgba(0, 0, 0, 0.25);
+            font-size: 0.86rem;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 84px;
+            padding: 38px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted-text);
+            background: rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
+
+        footer strong {
+            color: var(--blue);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 900;
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: white;
+            background: var(--blue);
+            box-shadow: var(--shadow);
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 980px) {
+            .feature-grid,
+            .world-grid,
+            .boss-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .path-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .overview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .overview-image {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .navigation-inner {
+                justify-content: center;
+                flex-direction: column;
+                padding: 13px 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 690px;
+                text-align: center;
+                background-position: 58% center;
+            }
+
+            .hero-copy {
+                margin: auto;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions,
+            .hero-facts {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 620px) {
+            main {
+                width: min(100% - 22px, 1150px);
+                padding-top: 56px;
+            }
+
+            section {
+                margin-bottom: 68px;
+            }
+
+            .hero {
+                min-height: 670px;
+                padding: 78px 16px 68px;
+            }
+
+            h1 {
+                font-size: clamp(3.75rem, 20vw, 5.8rem);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .feature-grid,
+            .world-grid,
+            .boss-grid,
+            .path-grid,
+            .overview-list {
+                grid-template-columns: 1fr;
+            }
+
+            .world-card {
+                min-height: 350px;
+            }
+
+            .overview-image {
+                min-height: 350px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="navigation" aria-label="Main navigation">
+        <div class="navigation-inner">
+            <a class="nav-logo" href="index.html">SG<span>games</span></a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a class="active-page" href="games.html">Games</a>
+                <a href="characters.html">Characters</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="top">
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <span class="eyebrow">In development</span>
+
+                <h1>
+                    Tyrant's World
+                    <span>Choose your legend</span>
+                </h1>
+
+                <p class="hero-description">
+                    Enter an open-world fantasy RPG filled with ancient powers,
+                    dangerous monsters, unforgettable bosses and adventures shaped
+                    by the character you choose to become.
+                </p>
+
+                <div class="hero-actions">
+                    <a
+                        class="button button-primary"
+                        href="https://store.steampowered.com/app/3715100/Tyrants_world/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View on Steam ↗
+                    </a>
+
+                    <a class="button button-secondary" href="#overview">
+                        Explore the world
+                    </a>
+                </div>
+
+                <div class="hero-facts" aria-label="Game information">
+                    <span class="hero-fact">Open-world fantasy RPG</span>
+                    <span class="hero-fact">Single-player & multiplayer</span>
+                    <span class="hero-fact">Built with Unreal Engine</span>
+                    <span class="hero-fact">No pay-to-win</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="reveal" id="overview">
+            <div class="section-heading">
+                <p class="section-label">The adventure begins</p>
+                <h2>A fantasy world built around freedom</h2>
+                <p class="section-description">
+                    Tyrant's World is designed to let players create a character,
+                    explore a dangerous world and grow through combat, discovery,
+                    quests, abilities and the choices they make along the way.
+                </p>
+            </div>
+
+            <div class="overview-grid">
+                <article class="overview-copy card reveal">
+                    <p>
+                        Choose a race and class, improve your stats, unlock new
+                        abilities and find equipment that changes how you approach
+                        each fight. Travel alone or join other players for difficult
+                        encounters and shared adventures.
+                    </p>
+
+                    <p>
+                        The world contains peaceful settlements, hostile wilderness,
+                        hidden dungeons and enemies powerful enough to become legends.
+                        Some threats can be defeated through strength. Others demand
+                        preparation, teamwork and knowledge of how their powers work.
+                    </p>
+
+                    <div class="overview-list">
+                        <div>Build your own character</div>
+                        <div>Explore at your own pace</div>
+                        <div>Master physical and magical abilities</div>
+                        <div>Face monsters, bosses and ancient gods</div>
+                    </div>
+                </article>
+
+                <article class="overview-image card reveal">
+                    <div class="image-note">
+                        <strong>A world worth exploring</strong>
+                        <span>
+                            Forests, cities, dungeons and dangerous regions are being
+                            created as part of the expanding game world.
+                        </span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="reveal" id="features">
+            <div class="section-heading">
+                <p class="section-label">Core features</p>
+                <h2>Become more than a hero</h2>
+                <p class="section-description">
+                    Your race, class, equipment, abilities and decisions combine to
+                    create a playstyle that belongs to you.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅰ</div>
+                    <h3>Races and classes</h3>
+                    <p>
+                        Create different character paths with unique strengths,
+                        weaknesses, abilities and ways to approach the world.
+                    </p>
+                </article>
+
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅱ</div>
+                    <h3>Abilities and magic</h3>
+                    <p>
+                        Learn combat skills, elemental powers and unusual abilities
+                        that can change movement, defence and the outcome of battle.
+                    </p>
+                </article>
+
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅲ</div>
+                    <h3>Dangerous boss fights</h3>
+                    <p>
+                        Study enemy behaviour and survive bosses built around their
+                        own mechanics, personalities and place in the lore.
+                    </p>
+                </article>
+
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅳ</div>
+                    <h3>Multiplayer adventures</h3>
+                    <p>
+                        Form parties, travel together and combine different builds
+                        when a threat is too dangerous to challenge alone.
+                    </p>
+                </article>
+
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅴ</div>
+                    <h3>Dungeons and guilds</h3>
+                    <p>
+                        Discover dangerous challenges, build a guild and take part in
+                        systems made for long-term progression and shared stories.
+                    </p>
+                </article>
+
+                <article class="feature-card card reveal">
+                    <div class="feature-icon">Ⅵ</div>
+                    <h3>Player freedom</h3>
+                    <p>
+                        Follow quests, hunt monsters, explore, trade or simply find
+                        your own reason to exist inside Tyrant's World.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="reveal" id="world">
+            <div class="section-heading">
+                <p class="section-label">Regions of the world</p>
+                <h2>Every place has a story</h2>
+                <p class="section-description">
+                    From living forests to lands ruled by the dead, each region is
+                    meant to feel distinct in atmosphere, danger and lore.
+                </p>
+            </div>
+
+            <div class="world-grid">
+                <article class="world-card forest card reveal">
+                    <div>
+                        <span class="world-tag">Wilderness region</span>
+                        <h3>Forest of the Druids</h3>
+                        <p>
+                            A beautiful but dangerous forest carrying the scars of
+                            ancient fire, hidden creatures and the druids who once
+                            called it home.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="world-card necropolis card reveal">
+                    <div>
+                        <span class="world-tag">Realm of the dead</span>
+                        <h3>The Necropolis</h3>
+                        <p>
+                            A dark kingdom connected to Hades, restless spirits and
+                            powers that can destroy a person without ever drawing a
+                            blade.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="world-card utopia card reveal">
+                    <div>
+                        <span class="world-tag">Great city</span>
+                        <h3>Utopia</h3>
+                        <p>
+                            A grand city where travellers, merchants and powerful
+                            figures meet beneath the promise of safety and progress.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="reveal" id="bosses">
+            <div class="section-heading">
+                <p class="section-label">Legends and nightmares</p>
+                <h2>Enemies remembered by name</h2>
+                <p class="section-description">
+                    Tyrant's World is filled with villains and monsters whose powers,
+                    histories and personalities make them more than simple obstacles.
+                </p>
+            </div>
+
+            <div class="boss-panel card reveal">
+                <div class="boss-grid">
+                    <article class="boss-card">
+                        <span>Force of nature</span>
+                        <h3>Ifrit</h3>
+                        <p>
+                            A sealed being whose flames are so powerful that only he
+                            can extinguish them.
+                        </p>
+                    </article>
+
+                    <article class="boss-card">
+                        <span>Lord of corruption</span>
+                        <h3>Hades</h3>
+                        <p>
+                            A manipulator who turns kindness, faith and courage into
+                            weapons against the people who possess them.
+                        </p>
+                    </article>
+
+                    <article class="boss-card">
+                        <span>Undead terror</span>
+                        <h3>Shinigami</h3>
+                        <p>
+                            A feared creature whose presence can break the courage of
+                            even experienced adventurers.
+                        </p>
+                    </article>
+
+                    <article class="boss-card">
+                        <span>Vampire lord</span>
+                        <h3>Chi no Otoko</h3>
+                        <p>
+                            A powerful vampire whose name, bloodline and influence
+                            reach far beyond a single battle.
+                        </p>
+                    </article>
+
+                    <article class="boss-card">
+                        <span>Silken nightmare</span>
+                        <h3>Arachne</h3>
+                        <p>
+                            A deadly creature that controls the battlefield through
+                            webs, poison and the monsters fighting beside her.
+                        </p>
+                    </article>
+
+                    <article class="boss-card">
+                        <span>Demon king</span>
+                        <h3>Akuma</h3>
+                        <p>
+                            A ruler of overwhelming power whose existence challenges
+                            the strongest mages alive.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="hero-actions">
+                    <a class="button button-secondary" href="characters.html">
+                        Meet more characters
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal" id="progression">
+            <div class="section-heading">
+                <p class="section-label">Your journey</p>
+                <h2>Grow through the way you play</h2>
+                <p class="section-description">
+                    Progression is meant to feel like a journey from an untested
+                    adventurer to someone powerful enough to challenge legends.
+                </p>
+            </div>
+
+            <div class="path-grid">
+                <article class="path-card card reveal">
+                    <h3>Create</h3>
+                    <p>
+                        Choose the race, class and identity that will define your
+                        first steps into the world.
+                    </p>
+                </article>
+
+                <article class="path-card card reveal">
+                    <h3>Learn</h3>
+                    <p>
+                        Gain experience, improve stats and unlock abilities that open
+                        new approaches to combat and exploration.
+                    </p>
+                </article>
+
+                <article class="path-card card reveal">
+                    <h3>Discover</h3>
+                    <p>
+                        Find regions, quests, equipment, secrets and characters whose
+                        stories reveal what kind of world you entered.
+                    </p>
+                </article>
+
+                <article class="path-card card reveal">
+                    <h3>Challenge</h3>
+                    <p>
+                        Enter dungeons, fight bosses and test the character you built
+                        against enemies that refuse to fight fairly.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="development card reveal" id="development">
+            <p class="section-label">Follow development</p>
+            <h2>Tyrant's World is still being built</h2>
+            <p>
+                New systems, monsters, abilities, locations and multiplayer features
+                are being developed as SGgames works toward creating a fantasy RPG
+                inspired by the freedom and ambition of the golden age of gaming.
+            </p>
+
+            <div class="hero-actions">
+                <a
+                    class="button button-primary"
+                    href="https://store.steampowered.com/app/3715100/Tyrants_world/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Visit the Steam page ↗
+                </a>
+
+                <a class="button button-secondary" href="games.html">
+                    View all SGgames projects
+                </a>
+            </div>
+
+            <div class="notice">
+                Screenshots, systems and features shown or described during
+                development may change before release.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 <strong>SGgames</strong>. Creating worlds worth exploring.</p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+        ↑
+    </button>
+
+    <script>
+        const progressBar = document.getElementById("progressBar");
+        const backToTop = document.getElementById("backToTop");
+        const revealItems = document.querySelectorAll(".reveal");
+
+        function updateScrollUI() {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+            progressBar.style.width = `${scrollProgress}%`;
+            backToTop.classList.toggle("show", scrollTop > 520);
+        }
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px"
+            }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        window.addEventListener("scroll", updateScrollUI, { passive: true });
+        window.addEventListener("resize", updateScrollUI);
+        updateScrollUI();
+    </script>
+</body>
+</html>
